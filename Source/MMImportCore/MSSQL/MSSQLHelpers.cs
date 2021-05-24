@@ -124,8 +124,8 @@ namespace Edonica.XMLImport
 
         public class MapItemSinkGeometry : MapItemSink
         {
-            IGeometrySink sink;
-            public MapItemSinkGeometry(IGeometrySink sink)
+            IGeometrySink110 sink;
+            public MapItemSinkGeometry(IGeometrySink110 sink)
             {
                 this.sink = sink;
             }
@@ -156,8 +156,8 @@ namespace Edonica.XMLImport
         }
         public class MapItemSinkGeography : MapItemSink
         {
-            IGeographySink sink;
-            public MapItemSinkGeography(IGeographySink sink)
+            IGeographySink110 sink;
+            public MapItemSinkGeography(IGeographySink110 sink)
             {
                 this.sink = sink;
             }
