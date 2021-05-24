@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Code for address layer 1 
+  Zaki Ahsan October 2007
+-->
+
+<xs:schema id="MMSchema" 
+           targetNamespace="http://tempuri.org/MMSchema.xsd" 
+           elementFormDefault="qualified" 
+           xmlns="http://tempuri.org/MMSchema.xsd" 
+           xmlns:mstns="http://tempuri.org/MMSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gml="http://www.opengis.net/gml">
+
+  <xs:import namespace="http://www.opengis.net/gml"/>
+  
+  
+
+<!-- start of added code for Addresslayer -->
+  <xs:element name="AddressPoint">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="TOID" type="TOID"/>
+			<xs:element name="StructureType" type="StructureType"/>
+			<xs:element name="Organisation" type="Address"/>
+			<xs:element name="Department" type="Address"/>
+			<xs:element name="POBox" type="Pcode"/>
+			<xs:element name="SubBuildingName" type="Address"/>
+			<xs:element name="BuildingName" type="Address"/>
+			<xs:element name="BuildingNumber" type="Pcode"/>
+			<xs:element name="DependentThoroughfare" type="Address"/>
+			<xs:element name="Thoroughfare" type="Address"/>
+			<xs:element name="DoubleDependentLocality" type="Address"/>
+			<xs:element name="DependentLocality" type="Address"/>
+			<xs:element name="PostTown" type="Address"/>
+			<xs:element name="PostCode" type="Pcode"/>
+			<xs:element name="ReferenceToTopographicArea" type="TOID"/>
+			<xs:element name="Geom" type="GMLStub_Point" />
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="Pcode"><xs:restriction base="xs:string"><xs:maxLength value="10" /></xs:restriction></xs:simpleType> 
+  <xs:simpleType name="Address"><xs:restriction base="xs:string"><xs:maxLength value="255" /></xs:restriction></xs:simpleType>  
+  <xs:simpleType name="TOID"><xs:restriction base="xs:string"><xs:maxLength value="20" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="StructureType"><xs:restriction base="xs:string"><xs:maxLength value="100" /></xs:restriction></xs:simpleType>  
+  
+
+<!-- End of added code for address layer-->
+
+  <!--Stub datatypes so we can have schem validation without trawling the GML-->
+  
+
+  <xs:complexType name="GMLStub_Point">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GMLStub_Polyline">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GMLStub_Region">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

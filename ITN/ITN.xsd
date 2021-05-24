@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Copyright Edonica
+
+  XSL Transform flattening OS MasterMap in accordance with the OS style guide
+-->
+
+<xs:schema id="MMSchema" 
+           targetNamespace="http://tempuri.org/MMSchema.xsd" 
+           elementFormDefault="qualified" 
+           xmlns="http://tempuri.org/MMSchema.xsd" 
+           xmlns:mstns="http://tempuri.org/MMSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gml="http://www.opengis.net/gml">
+
+  <xs:import namespace="http://www.opengis.net/gml"/>
+
+  <!--Logical 'road' - just a collection of links really.  -->
+  <xs:element name="Road">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="DescriptiveGroup" type="BigString" />
+        <xs:element name="DescriptiveTerms" type="BigString" />
+        <xs:element name="RoadName" type="BigString" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Used to join roads to links-->
+  <xs:element name="RoadToRoadLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RoadTOID" type="TOID" />
+        <xs:element name="RoadLinkTOID" type="TOID" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--An individual link-->
+  <xs:element name="RoadLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="DescriptiveTerm" type="BigString" />
+        <xs:element name="NatureOfRoad" type="BigString" />
+        <xs:element name="Length" type="xs:double" />
+        <xs:element name="RoadNodeFrom" type="TOID" />
+        <xs:element name="RoadNodeTo" type="TOID" />
+        <xs:element name="Geom" type="GMLStub_Polyline" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Used to join roads to links-->
+  <xs:element name="RoadLinkToTopographicArea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RoadLinkTOID" type="TOID" />
+        <xs:element name="TopographicAreaTOID" type="TOID" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Used to join roads to links-->
+  <xs:element name="RoadNode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="TopographicAreaTOID" type="TOID" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InformationPoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="JunctionName" type="BigString" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RoadNodeInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="RoadNodeTOID" type="TOID" />
+        <xs:element name="Summary" type="BigString" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RoadLinkInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="RoadLinkTOID" type="TOID" />
+        <!--
+        <xs:element name="Geom" type="GMLStub_Point" minOccurs="0" />
+        -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--References to links are stored in 'RoadRouteInformationToRoadLink'-->
+  <xs:element name="RoadRouteInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="Version" type="xs:int" />
+        <xs:element name="VersionDate" type="DateString" />
+        <xs:element name="Summary" type="BigString"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Used to join roads to links.  Stored against 'RoadRouteInformation'-->
+  <xs:element name="RoadRouteInformationToRoadLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RoadRouteInformationTOID" type="TOID" />
+        <xs:element name="RoadLinkTOID" type="TOID" />
+        <xs:element name="Orientation" type="String1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!--Qualifier that might be applied to a number of different item types -->
+  <xs:element name="Qualifier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ItemTOID" type="TOID" />
+        <xs:element name="Type" type="BigString" />
+        <xs:element name="Value" type="BigString" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DepartedFeature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="ReasonForDeparture" type="ReasonForDeparture" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="TOID">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ReasonForDeparture">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DateString">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="String1">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BigString">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--Stub datatypes so we can have schema validation without trawling the GML-->
+  <xs:complexType name="GMLStub_Point">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GMLStub_Polyline">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

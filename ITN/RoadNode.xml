@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osgb:networkMember
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v7/OSDNFFeatures.xsd'
+  >
+  <osgb:RoadNode fid='osgb4000000023154080'>
+    <osgb:version>2</osgb:version>
+    <osgb:versionDate>2005-09-12</osgb:versionDate>
+    <osgb:theme>Road Network</osgb:theme>
+    <osgb:changeHistory>
+      <osgb:changeDate>2002-09-19</osgb:changeDate>
+      <osgb:reasonForChange>New</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:descriptiveGroup>Road Topology</osgb:descriptiveGroup>
+    <osgb:point>
+      <gml:Point srsName='osgb:BNG'>
+        <gml:coordinates>461016.000,152214.000</gml:coordinates>
+      </gml:Point>
+    </osgb:point>
+    <osgb:referenceToTopographicArea xlink:href='#osgb1000000153455009'/>
+  </osgb:RoadNode>
+</osgb:networkMember>

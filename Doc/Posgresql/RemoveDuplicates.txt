@@ -1,0 +1,65 @@
+Starting
+Loading schema : OSMMTopography.xsd
+Loading trasform : OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Server=localhost;Database=MasterMap;User Id=postgres;CommandTimeout=86400;
+Connected OK
+Output processor connected
+Removing duplicates
+SQL:ALTER TABLE TopographicPoint RENAME TO TopographicPoint_WithDuplicates;
+SQL:CREATE TABLE TopographicPoint (TOID varchar(20),FeatureCode integer,PointClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicpoint','geom',-1,'POINT', 2);
+SQL:INSERT INTO TopographicPoint (SELECT DISTINCT ON (TOID) * FROM TopographicPoint_WithDuplicates)
+  returned : 146
+SQL:DROP TABLE TopographicPoint_WithDuplicates;
+SQL:ALTER TABLE TopographicLine RENAME TO TopographicLine_WithDuplicates;
+SQL:CREATE TABLE TopographicLine (TOID varchar(20),FeatureCode integer,LineClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicline','geom',-1,'GEOMETRY', 2);
+SQL:INSERT INTO TopographicLine (SELECT DISTINCT ON (TOID) * FROM TopographicLine_WithDuplicates)
+  returned : 15371
+SQL:DROP TABLE TopographicLine_WithDuplicates;
+SQL:ALTER TABLE TopographicArea RENAME TO TopographicArea_WithDuplicates;
+SQL:CREATE TABLE TopographicArea (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicarea','geom',-1,'GEOMETRY', 2);
+SQL:INSERT INTO TopographicArea (SELECT DISTINCT ON (TOID) * FROM TopographicArea_WithDuplicates)
+  returned : 5194
+SQL:DROP TABLE TopographicArea_WithDuplicates;
+SQL:ALTER TABLE TopDetail RENAME TO TopDetail_WithDuplicates;
+SQL:CREATE TABLE TopDetail (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topdetail','geom',-1,'GEOMETRY', 2);
+SQL:INSERT INTO TopDetail (SELECT DISTINCT ON (TOID) * FROM TopDetail_WithDuplicates)
+  returned : 145
+SQL:DROP TABLE TopDetail_WithDuplicates;
+SQL:ALTER TABLE DepartedFeature RENAME TO DepartedFeature_WithDuplicates;
+SQL:CREATE TABLE DepartedFeature (TOID varchar(20),ReasonForDeparture varchar(255))
+SQL:INSERT INTO DepartedFeature (SELECT DISTINCT ON (TOID) * FROM DepartedFeature_WithDuplicates)
+  returned : 0
+SQL:DROP TABLE DepartedFeature_WithDuplicates;
+SQL:ALTER TABLE CartographicText RENAME TO CartographicText_WithDuplicates;
+SQL:CREATE TABLE CartographicText (TOID varchar(20),FeatureCode integer,TextString varchar(255),Height double precision,Orientation integer,Col varchar(6),FontNumber integer,AnchorPosition integer,TextStyle integer)
+SQL:SELECT * FROM AddGeometryColumn('','cartographictext','geom',-1,'POINT', 2);
+SQL:INSERT INTO CartographicText (SELECT DISTINCT ON (TOID) * FROM CartographicText_WithDuplicates)
+  returned : 929
+SQL:DROP TABLE CartographicText_WithDuplicates;
+SQL:ALTER TABLE CartographicSymbol RENAME TO CartographicSymbol_WithDuplicates;
+SQL:CREATE TABLE CartographicSymbol (TOID varchar(20),FeatureCode integer,Orientation integer,SymbolClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','cartographicsymbol','geom',-1,'POINT', 2);
+SQL:INSERT INTO CartographicSymbol (SELECT DISTINCT ON (TOID) * FROM CartographicSymbol_WithDuplicates)
+  returned : 144
+SQL:DROP TABLE CartographicSymbol_WithDuplicates;
+SQL:ALTER TABLE BoundaryLine RENAME TO BoundaryLine_WithDuplicates;
+SQL:CREATE TABLE BoundaryLine (TOID varchar(20),FeatureCode integer)
+SQL:SELECT * FROM AddGeometryColumn('','boundaryline','geom',-1,'GEOMETRY', 2);
+SQL:INSERT INTO BoundaryLine (SELECT DISTINCT ON (TOID) * FROM BoundaryLine_WithDuplicates)
+  returned : 33
+SQL:DROP TABLE BoundaryLine_WithDuplicates;
+SQL:ALTER TABLE BoundaryMember RENAME TO BoundaryMember_WithDuplicates;
+SQL:CREATE TABLE BoundaryMember (TOID varchar(20),FeatureCode integer)
+SQL:SELECT * FROM AddGeometryColumn('','boundarymember','geom',-1,'POINT', 2);
+SQL:INSERT INTO BoundaryMember (SELECT DISTINCT ON (TOID) * FROM BoundaryMember_WithDuplicates)
+  returned : 0
+SQL:DROP TABLE BoundaryMember_WithDuplicates;
+Shutting down output processor
+Shutdown complete
+Done

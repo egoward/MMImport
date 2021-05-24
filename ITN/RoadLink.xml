@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osgb:networkMember
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v7/OSDNFFeatures.xsd'
+  >
+  <osgb:RoadLink fid='osgb4000000023262703'>
+    <osgb:version>6</osgb:version>
+    <osgb:versionDate>2006-02-03</osgb:versionDate>
+    <osgb:theme>Road Network</osgb:theme>
+    <osgb:changeHistory>
+      <osgb:changeDate>2003-11-21</osgb:changeDate>
+      <osgb:reasonForChange>New</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:changeHistory>
+      <osgb:changeDate>2003-11-21</osgb:changeDate>
+      <osgb:reasonForChange>Modified</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:changeHistory>
+      <osgb:changeDate>2005-11-11</osgb:changeDate>
+      <osgb:reasonForChange>Modified</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:descriptiveGroup>Road Topology</osgb:descriptiveGroup>
+    <osgb:descriptiveTerm>B Road</osgb:descriptiveTerm>
+    <osgb:natureOfRoad>Single Carriageway</osgb:natureOfRoad>
+    <osgb:length>561.86</osgb:length>
+    <osgb:polyline>
+      <gml:LineString srsName='osgb:BNG'>
+        <gml:coordinates>461572.000,152006.000 461529.000,152003.000 461500.000,152000.000 461461.000,151995.000 461429.000,151988.000 461406.000,151983.000 461347.000,151965.000 461334.183,151959.933 461333.297,151959.676 461317.000,151953.000 461280.000,151937.000 461266.000,151930.000 461246.000,151920.000 461219.000,151905.000 461205.000,151896.000 461186.000,151884.000 461150.000,151859.000 461091.000,151810.000 461068.000,151789.000 </gml:coordinates>
+      </gml:LineString>
+    </osgb:polyline>
+    <osgb:directedNode orientation='-' xlink:href='#osgb4000000023154094'>Something</osgb:directedNode>
+    <osgb:directedNode orientation='+' xlink:href='#osgb4000000023154039'/>
+    <osgb:referenceToTopographicArea xlink:href='#osgb1000000153413988'/>
+    <osgb:referenceToTopographicArea xlink:href='#osgb1000000153419696'/>
+  </osgb:RoadLink>
+</osgb:networkMember>

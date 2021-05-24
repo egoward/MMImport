@@ -1,0 +1,36 @@
+Starting
+Loading schema : OSMMTopography.xsd
+Loading trasform : OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Server=localhost;Database=MasterMap;User Id=postgres;CommandTimeout=86400;
+Connected OK
+Output processor connected
+SQL:VACUUM ANALYZE TopographicPoint
+SQL:SELECT updateGeometrySRID('topographicpoint', 'geom', 27700);
+SQL:CREATE INDEX IDX_TopographicPoint_Geom ON TopographicPoint USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE TopographicLine
+SQL:SELECT updateGeometrySRID('topographicline', 'geom', 27700);
+SQL:CREATE INDEX IDX_TopographicLine_Geom ON TopographicLine USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE TopographicArea
+SQL:SELECT updateGeometrySRID('topographicarea', 'geom', 27700);
+SQL:CREATE INDEX IDX_TopographicArea_Geom ON TopographicArea USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE TopDetail
+SQL:SELECT updateGeometrySRID('topdetail', 'geom', 27700);
+SQL:CREATE INDEX IDX_TopDetail_Geom ON TopDetail USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE DepartedFeature
+SQL:VACUUM ANALYZE CartographicText
+SQL:SELECT updateGeometrySRID('cartographictext', 'geom', 27700);
+SQL:CREATE INDEX IDX_CartographicText_Geom ON CartographicText USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE CartographicSymbol
+SQL:SELECT updateGeometrySRID('cartographicsymbol', 'geom', 27700);
+SQL:CREATE INDEX IDX_CartographicSymbol_Geom ON CartographicSymbol USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE BoundaryLine
+SQL:SELECT updateGeometrySRID('boundaryline', 'geom', 27700);
+SQL:CREATE INDEX IDX_BoundaryLine_Geom ON BoundaryLine USING GIST ( Geom GIST_GEOMETRY_OPS);
+SQL:VACUUM ANALYZE BoundaryMember
+SQL:SELECT updateGeometrySRID('boundarymember', 'geom', 27700);
+SQL:CREATE INDEX IDX_BoundaryMember_Geom ON BoundaryMember USING GIST ( Geom GIST_GEOMETRY_OPS);
+Shutting down output processor
+Shutdown complete
+Done

@@ -1,0 +1,66 @@
+﻿Started at 2009/04/20-10:28:56
+Loading schema : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xsd
+Loading transform : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Data Source=GORDON;Initial Catalog=MasterMap;Integrated Security=True;Application Name="MMImport (bulk load)"
+Connected OK
+Output processor connected
+Processing C:\GIS1\FromOS\PortTalbot-47135-SS7886-5i1.gz(1 of 1)
+Processing compressed file size : 2122692
+Line : 9 - 0.4%
+LOG line 9 : GML Description : Ordnance Survey, (c) Crown Copyright. All rights reserved, 2008-07-02
+LOG line 10 : GML bounded by : unknown
+LOG line 11 : Query time : 2008-07-02T01:46:29
+LOG line 16 : OS Query extent : 278000.000,186000.000 280000.000,188010.000
+Line : 100019 - 49.6%
+Line : 200024 - 60.6%
+Line : 300011 - 72.6%
+Line : 400000 - 81.8%
+Flusing TopographicLine.  Rows : 10000
+Line : 500010 - 96.1%
+LOG line 530257 : OS Bounded By : 276762.800,183756.640 280525.940,189562.500
+Total time for file : 4.873 seconds
+Input: gml:description
+  Count: 1
+Timings : ParseIn 0.001 seconds, Trans 0.004 seconds, ParseOut 0.000 seconds SendOut 0.000 seconds
+Input: gml:boundedBy
+  Count: 1
+Timings : ParseIn 0.000 seconds, Trans 0.001 seconds, ParseOut 0.000 seconds SendOut 0.000 seconds
+Input: osgb:queryTime
+  Count: 1
+Timings : ParseIn 0.000 seconds, Trans 0.001 seconds, ParseOut 0.000 seconds SendOut 0.000 seconds
+Input: osgb:queryExtent
+  Count: 1
+Timings : ParseIn 0.000 seconds, Trans 0.001 seconds, ParseOut 0.000 seconds SendOut 0.000 seconds
+Input: osgb:topographicMember
+  Count: 20421
+Timings : ParseIn 0.812 seconds, Trans 0.996 seconds, ParseOut 0.615 seconds SendOut 2.157 seconds
+    Output count: TopographicArea - 5361
+    Output count: TopDetail - 149
+    Output count: TopographicPoint - 150
+    Output count: TopographicLine - 14761
+Input: osgb:cartographicMember
+  Count: 1085
+Timings : ParseIn 0.036 seconds, Trans 0.058 seconds, ParseOut 0.030 seconds SendOut 0.018 seconds
+    Output count: CartographicText - 939
+    Output count: CartographicSymbol - 146
+Input: osgb:boundaryMember
+  Count: 32
+Timings : ParseIn 0.002 seconds, Trans 0.005 seconds, ParseOut 0.001 seconds SendOut 0.002 seconds
+    Output count: BoundaryLine - 32
+Input: osgb:boundedBy
+  Count: 1
+Timings : ParseIn 0.000 seconds, Trans 0.001 seconds, ParseOut 0.000 seconds SendOut 0.000 seconds
+Flusing TopographicPoint.  Rows : 150
+Flusing TopographicLine.  Rows : 4761
+Flusing TopographicArea.  Rows : 5361
+Flusing TopDetail.  Rows : 149
+Flusing DepartedFeature.  Rows : 0
+Flusing CartographicText.  Rows : 939
+Flusing CartographicSymbol.  Rows : 146
+Flusing BoundaryLine.  Rows : 32
+Flusing BoundaryMember.  Rows : 0
+Shutting down output processor
+Shutdown complete : (6.613 seconds)
+Finished at 2009/04/20-10:29:03

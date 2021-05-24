@@ -1,0 +1,310 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Importing into PostgreSQL</title>
+		<style type="text/css">
+        .hilightText {
+	        background-color: #FFFF00;
+        }
+		.table1 {
+	border-collapse: collapse;
+}
+.style1 {
+	text-align: center;
+}
+.codeBlock {
+	padding: 4px;
+	border-style: solid;
+	border-width: thin;
+	margin-left: 40px;
+}
+		</style>
+	</head>
+	<body style="font-family: Arial">
+	
+        <h2>Initial Configuration</h2>
+        <p>
+            <img alt="Screen shot of importer" src="ScreenShot1.png"></p>
+        <p>
+            First, get Postgres and the GIS extensions installed.&nbsp; For 
+			Windows, the PostGIS instructions currently say...</p>
+	<p>
+            &quot;When you install PostgreSQL, do not install the PostGIS included in 
+			the <a href="http://www.postgresql.org/ftp/binary/">PostgreSQL 
+			installer</a>, it is often a few versions behind.&nbsp; Instead, use 
+			the separate PostGIS installer available
+			<a href="http://www.postgis.org/download/windows/">here</a>.&quot;.&nbsp; 
+			If you&#39;re running on 64 bit windows then you may need to replace 
+			&quot;Program Files&quot; with &quot;Program Files (x86)&quot; when you install PostGIS.</p>
+<p>
+            			Create a database to store your MasterMap data using 
+						&#39;template_postgis&quot; as a template and UTF8 encoding.&nbsp; 
+						There are some characters with accents in the dataset 
+						that will cause problems otherwise.&nbsp; To check the 
+						spatial extensions are loaded, you can go into PgAdmin 
+						and in Databases &gt; MasterMap &gt; Schemas &gt; Public &gt; 
+						Functions, you should see entries with names like 
+						&#39;addbbox&#39;.&nbsp; There&#39;s plenty of documentation on 
+						doing this elsewhere.</p>
+<p>
+            The importer streams the data directly into PSQL.EXE to do a bulk load.&nbsp; 
+			For some fairly obvious reasons, there&#39;s no way of specifying a password 
+			on the PSQL command line and it doesn&#39;t read from standard input.&nbsp; 
+			We need to 
+			disable the password for local connection.&nbsp; </p>
+	<p>
+            This can be done by either setting an empty password for the 
+			database or setting local connections to trusted.</p>
+<p>
+            To set Postgres to trust local connections, you need the following 
+			line in your &quot;Data\pg_hba.conf&quot;</p>
+<pre class="codeBlock">host    all         all         127.0.0.1/32          trust</pre>
+        <p>
+            I&#39;m afraid getting the permissions correct can be a bit of a faff.</p>
+                UTF8 encoding is used by MasterMap data and the importer.&nbsp; I 
+			would recommend you use UTF8 encoding internally within postgres.
+        <p>If you need to specify a port or other details then see the relevant 
+			external links (both for the connection string and the PSQL 
+			commandline)</p>
+            <table class="table1">
+                <tr>
+                    <td>
+                        <strong>Parameter</strong></td>
+                    <td>
+                        <strong>Description</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>ConnectionString</strong></td>
+                    <td>
+                        NPGSQL connection string used to connect to the database.<br />
+                        Value should be:<br />
+                        <pre>Server=<span class="hilightText">DatabaseServer</span>;Database=<span class="hilightText">DatabaseName</span>;User Id=<span class="hilightText">Username</span>;CommandTimeout=86400;</pre>
+                        <p>
+Documentation for the connection string is in the 'Connection String parameters'
+                            <a href="http://npgsql.projects.postgresql.org/docs/manual/UserManual.html">
+                            http://npgsql.projects.postgresql.org/docs/manual/UserManual.html</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      <strong>PSQLPathToExe</strong>
+                    </td>
+                    <td>
+                    When bulk loading data into the database, we run PSQL.EXE and pipe the data into STDIN.  An example might be:
+                    <pre><span class="hilightText">PathToPSQL</span></pre>
+                    You can press the browse button to locate your PSQL executable.
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                    <strong>PSQLCommandLineArguments</strong>
+                    </td>
+                    <td>
+                    Command line parameters to pass into PSQL to initiate the bulk load.  The {0} string will be replaced with the table name.
+                    <pre>-d <span class="hilightText">DatabaseName</span> <span class="hilightText">postgres</span> -c "copy {0} from STDIN";</pre>
+                    Documentation on the PSQL command line can be found here:
+                    <a href="http://www.postgresql.org/docs/8.1/static/app-psql.html">http://www.postgresql.org/docs/8.1/static/app-psql.html</a>
+                    </td>
+                </tr>
+            </table>
+        <p>
+            Once you are happy with your settings, try selecting Actions &gt; "Test Configuration
+            / Connection" from the menu.&nbsp; This will test the ConnectionString parameter
+            is working correctly.</p>
+	<p class="style1">
+            <img alt="Test configuration / connection - success" src="InitialTest.png" 
+                width="680" height="265"></p>
+	<p>
+            When you're happy with them
+            select File &gt; "Save Defaults" from the menu and it will write a Default.XMLImport
+            file in the same directory as the application.</p>
+	<p>
+            This only tests the &#39;ConnectionString&#39; setting.&nbsp; The PSQL 
+			settings can only be tested by running an import.</p>
+        <h2>
+            Importing a full dataset</h2>
+        <h3>
+            1. Create tables in database</h3>
+        <p>
+            From the menu, select Actions &gt; Create Tables.</p>
+        <p>
+            The output should be as per <a href=CreateTables.txt">
+			CreateTables.txt</a></p>
+        <h3>
+            2. Import data</h3>
+        <p>
+            From the menu, select Actions &gt; Import Files.&nbsp; Select the XML files or zipped
+            XML files you wish to import and select OK.</p>
+	<p>
+            If you&#39;re just testing out the process, you can get some 
+			sample data from the Ordnance Survey:<br>
+			<a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/topography/sample.html">
+			http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/topography/sample.html</a></p>
+        <p>
+            Try a small file first as some errors will only appear when you get 
+			to the end.&nbsp; You can import the same file several times then
+            remove duplicates afterwards.</p>
+	<p>
+            The output should be as per <a href=ImportData.txt">ImportData.txt</a></p>
+            <h3>3. Query Information</h3>
+            <p>
+                The import process will log some data when it has finished.&nbsp;
+                To get simple information from the database, select Actions &gt; Query Information.</p>
+        <p>
+            The output should be as per <a href=QueryInfo.txt">QueryInfo.txt</a></p>
+	<h3>
+            4. Remove duplicates</h3>
+        <p>
+            If you've imported several tiles, objects that are on the boundaries between the
+            tiles will be in the database twice.&nbsp; To remove these tiles, select Actions
+            &gt; Remove Duplicates.</p>
+	<p>
+            The output should be as per <a href=RemoveDuplicates.txt">
+			RemoveDuplicates.txt</a></p>
+            <h3>5. Create Indexes</h3>
+            <p>
+                This step will create a spatial index on the geometry in the map and put the map
+                into the correct spatial reference.&nbsp; You cannot import any data while the indexes
+                are present.&nbsp; To add the indexes, select Actions &gt; Create Indexes.</p>
+	<p>
+                The output should be as per <a href=CreateIndexes.txt">
+				CreateIndexes.txt</a></p>
+        <p>
+            &nbsp;</p>
+        <h2>
+            Applying a Change Only Update</h2>
+        <h3>1. Set the TableNamePrefix to 'UPDATE_'</h3>
+            <p>On the right hand side of the import window, set the 
+			TableNamePrefix to &#39;UPDATE_&#39;. This will append UPDATE_ to all table 
+			names so we can import our change only files into a different 
+			location.</p>
+        <h3>2. Create the 'UPDATE_' tables</h3>
+            <p>From the menu, select Actions > Create Tables</p>
+        <h3>3. Import the change only updates</h3>
+            <p>From the menu, select Actions > Import Files.  Select the change only update files to import.</p>
+        <h3>4. Remove any duplicates</h3>
+            <p>If you have imported multiple change only update files, select 
+			Actions &gt; Remove Duplicates to remove duplicate items (this is not 
+			essential)</p>
+        <h3>4. Apply the update</h3>
+            <p>From the menu, select &#39;Apply Loaded Updates&#39;.&nbsp; For each 
+			table, this will...</p>
+	<ul>
+		<li>Delete from the main table where the update had recorded a 
+		&#39;departed&#39; feature.</li>
+		<li>Delete from the main table any records present in the update (based 
+		on TOID / FID)</li>
+		<li>Insert any records present in the update.</li>
+	</ul>
+	<p>&nbsp;</p>
+        <h2>Importing data using WGS84 / Latitude and Logitude</h2>
+	<p>You can convert data from OS grid references (known as OSGB1936 or EPSG:27700) to Latitude and Logitude systems used by GPS (known as WGS84 or EPSG:4326).  To do this, enable the "ConvertToWGS84" option to true and specify the SRID of 4326.</p>
+	<p>The conversion is different from that available in PostGIS and PostGIS does not include the OSTN02 dataset used by Ordnance Survey.  If you're mainly working with WGS84/GPScoordinates, I recommend you use this option.  If you're mainly working with data surveyed in the UK then it won't be appropriate.  If you get it wrong, the errors in coordinate conversion will be of the order of 7 meters.</p>
+        <h2>Importing Address Layer 2 XML</h2>
+        <p>A database schema and transformation have been provided to import OS AddressLayer 2 data.  Set the OutputSchema to 'OSMMAddressLayer2.xsd' and the Transform to 'OSMMAddressLayer2.xslt' if you wish to import address layer 2 data.</p>
+        <p>The import process may not be complete, and you may wish to modify the XSL file to process additional attributes.</p>
+        
+        
+        <h2>
+            Postgres</h2>
+	<p>
+            You may find these SQL statements handy if you want to perform some 
+			of these actions from postgres directly.&nbsp;
+			<a href=CannedSQLStatements.txt">CannedSQLStatements.txt</a>.</p>
+	<p>
+            Some common errors are below.&nbsp; Table names may change.</p>
+	<h3>Error while creating tables:</h3>
+<pre class="codeBlock">ERROR: 42883: function addgeometrycolumn("unknown", "unknown", "unknown", integer, "unknown", integer) does not exist</pre>
+<p>PostGIS Spatial extensios have not been loaded for this database.&nbsp; 
+Recreate it using the postgis template or run &#39;lwpostgis.sql&#39; and 
+&#39;spatial_ref_sys.sql&#39; on the database.</p>
+
+
+
+
+	<h3>Error while creating tables:</h3>
+<pre class="codeBlock">ERROR: 42P07: relation &quot;topographicpoint&quot; already exists</pre>
+<p>As the error implies, the table already exists.&nbsp; To remove the tables, 
+you can run Actions &gt; Drop Tables.</p>
+
+
+
+
+<h3>Error while importing data:</h3>
+<pre class="codeBlock">TopographicPoint : STDERR : ERROR:  relation &quot;topographicpoint" does not exist</pre>
+<p>You have not created the tables.  Chose Actions > Create Tables from the menu and run the import again.</p>
+
+
+
+
+<h3>Error while querying / indexing data:</h3>
+<pre class="codeBlock">Error : ERROR: 42P01: relation &quot;topographicpoint&quot; does not exist</pre>
+<p>You have not created the tables.  Chose Actions > Create Tables from the menu and run the import again.</p>
+
+
+
+
+<h3>Error while importing data:</h3>
+<pre class="codeBlock">STDERR : ERROR:  new row for relation "topographicpoint" violates check constraint "enforce_srid_geom"</pre>
+
+<p>The spatial index is present.  We load data in a "Well Known Binary" form which does not specify a coordinate system but the database constraint forces the spatial reference to UK grid references so the insert fails.  Choose Actions > Drop Indexes, run the import again, then choose Actions > Create Indexes.</p>
+	
+<h3>Error when applying indexes:</h3>
+<pre class="codeBlock">ERROR: 42704: constraint "enforce_srid_geom" does not exist</pre>
+<p>Spatial indexes for this table have been broken.&nbsp; Manually recreate the 
+indexes or drop the table and recreate it.</p>
+
+	<h3>When removing duplicates:</h3>
+       <pre class="codeBlock">ERROR: 42P07: relation "topographicpoint_withduplicates" already exists</pre>
+       <p>An error has occured while previously removing duplicates.<p>If the 
+	process fails in the middle, the database will be left in an odd 
+		state.&nbsp; The easiest thing to do is to delete all the tables and 
+	start again.</p>
+       <p>If you have a lot of data and wish to revert back to an old state after an update, you may wish to delete the original table and rename the "_WithDuplicates" table back over the original one.&nbsp; 
+		The CannedSQLStatements.txt file contains the SQL the program will run.</p>
+
+	<h3>When running a SQL statement that takes some time:</h3>
+       <pre class="codeBlock">ERROR: 57014: canceling statement due to user request</pre>
+       <p>A command has taken a long time to run and the Command Timeout was expired.  Make sure the CommandTimeout in the connection string and in the postgres settings is high enough.</p>
+       
+<h3>Notes:</h3>
+       
+<p>Download Postgres.&nbsp; If you&#39;re not using the windows installer, you&#39;ll 
+probably have to create a database.</p>
+<pre class="codeBlock">In...
+  ...\pgsql\bin>
+Run...
+  initdb ..\Data\ -U postgres -E utf8</pre>
+  <p>
+Your data will now be stored in ..\Data\
+</p>
+
+<p>To run postgres...</p>
+<pre class="codeBlock">In...
+  ...\pgsql\bin>
+Run...
+  postgres -D ..\Data\ </pre>
+  
+<p>Download postgres admin pack (comes with the normal windows installer)<br>
+As per instructions, enable autovacuum.</p>
+<p><strong>That&#39;s OK, but it&#39;s unclear how you install the spatial 
+extensions.</strong></p>
+<p>To add spatial extensions to an existing database from the commandline...<br>
+</p>
+<pre class="codeBlock">Add PLPGSQL support...
+  Z:\PGSQL\bin>createlang -U postgres plpgsql Mastermap
+Add spatial extensions...
+  Z:\PGSQL\share\contrib>..\..\bin\psql -U postgres -d Mastermap -f lwpostgis.sql
+Add all known coordinate systems...
+  Z:\PGSQL\share\contrib>..\..\bin\psql -U postgres -d Mastermap -f spatial_ref_sys.sql
+</pre>
+<p>
+Note: Createlang might well already have been run</p>
+	<p>
+Note: You can run the SQL scripts by copy and pasting them into the pgAdmin 
+console if you prefer.</p>
+       
+	
+	</body>
+</html>

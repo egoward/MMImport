@@ -1,0 +1,164 @@
+Create Tables
+
+CREATE TABLE TopographicPoint (TOID varchar(20),FeatureCode integer,PointClass varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicpoint','geom',-1,'POINT', 2);
+CREATE TABLE TopographicLine (TOID varchar(20),FeatureCode integer,LineClass varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicline','geom',-1,'GEOMETRY', 2);
+CREATE TABLE TopographicArea (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicarea','geom',-1,'GEOMETRY', 2);
+CREATE TABLE TopDetail (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SELECT * FROM AddGeometryColumn('','topdetail','geom',-1,'GEOMETRY', 2);
+CREATE TABLE DepartedFeature (TOID varchar(20),ReasonForDeparture varchar(255))
+CREATE TABLE CartographicText (TOID varchar(20),FeatureCode integer,TextString varchar(255),Height double precision,Orientation integer,Col varchar(6),FontNumber integer,AnchorPosition integer,TextStyle integer)
+SELECT * FROM AddGeometryColumn('','cartographictext','geom',-1,'POINT', 2);
+CREATE TABLE CartographicSymbol (TOID varchar(20),FeatureCode integer,Orientation integer,SymbolClass varchar(120))
+SELECT * FROM AddGeometryColumn('','cartographicsymbol','geom',-1,'POINT', 2);
+CREATE TABLE BoundaryLine (TOID varchar(20),FeatureCode integer)
+SELECT * FROM AddGeometryColumn('','boundaryline','geom',-1,'GEOMETRY', 2);
+CREATE TABLE BoundaryMember (TOID varchar(20),FeatureCode integer)
+SELECT * FROM AddGeometryColumn('','boundarymember','geom',-1,'POINT', 2);
+
+
+Delete Tables
+
+DROP TABLE TopographicPoint
+DROP TABLE TopographicLine
+DROP TABLE TopographicArea
+DROP TABLE TopDetail
+DROP TABLE DepartedFeature
+DROP TABLE CartographicText
+DROP TABLE CartographicSymbol
+DROP TABLE BoundaryLine
+DROP TABLE BoundaryMember
+
+
+Bulk load data
+
+psql -d MasterMap postgres -c "copy TopographicPoint from STDIN";
+psql -d MasterMap postgres -c "copy TopographicLine from STDIN";
+psql -d MasterMap postgres -c "copy TopographicArea from STDIN";
+psql -d MasterMap postgres -c "copy TopDetail from STDIN";
+psql -d MasterMap postgres -c "copy DepartedFeature from STDIN";
+psql -d MasterMap postgres -c "copy CartographicText from STDIN";
+psql -d MasterMap postgres -c "copy CartographicSymbol from STDIN";
+psql -d MasterMap postgres -c "copy BoundaryLine from STDIN";
+psql -d MasterMap postgres -c "copy BoundaryMember from STDIN";
+
+
+
+Remove duplicates
+
+ALTER TABLE TopographicPoint RENAME TO TopographicPoint_WithDuplicates;
+CREATE TABLE TopographicPoint (TOID varchar(20),FeatureCode integer,PointClass varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicpoint','geom',-1,'POINT', 2);
+INSERT INTO TopographicPoint (SELECT DISTINCT ON (TOID) * FROM TopographicPoint_WithDuplicates)
+DROP TABLE TopographicPoint_WithDuplicates;
+ALTER TABLE TopographicLine RENAME TO TopographicLine_WithDuplicates;
+CREATE TABLE TopographicLine (TOID varchar(20),FeatureCode integer,LineClass varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicline','geom',-1,'GEOMETRY', 2);
+INSERT INTO TopographicLine (SELECT DISTINCT ON (TOID) * FROM TopographicLine_WithDuplicates)
+DROP TABLE TopographicLine_WithDuplicates;
+ALTER TABLE TopographicArea RENAME TO TopographicArea_WithDuplicates;
+CREATE TABLE TopographicArea (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SELECT * FROM AddGeometryColumn('','topographicarea','geom',-1,'GEOMETRY', 2);
+INSERT INTO TopographicArea (SELECT DISTINCT ON (TOID) * FROM TopographicArea_WithDuplicates)
+DROP TABLE TopographicArea_WithDuplicates;
+ALTER TABLE TopDetail RENAME TO TopDetail_WithDuplicates;
+CREATE TABLE TopDetail (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SELECT * FROM AddGeometryColumn('','topdetail','geom',-1,'GEOMETRY', 2);
+INSERT INTO TopDetail (SELECT DISTINCT ON (TOID) * FROM TopDetail_WithDuplicates)
+DROP TABLE TopDetail_WithDuplicates;
+ALTER TABLE DepartedFeature RENAME TO DepartedFeature_WithDuplicates;
+CREATE TABLE DepartedFeature (TOID varchar(20),ReasonForDeparture varchar(255))
+INSERT INTO DepartedFeature (SELECT DISTINCT ON (TOID) * FROM DepartedFeature_WithDuplicates)
+DROP TABLE DepartedFeature_WithDuplicates;
+ALTER TABLE CartographicText RENAME TO CartographicText_WithDuplicates;
+CREATE TABLE CartographicText (TOID varchar(20),FeatureCode integer,TextString varchar(255),Height double precision,Orientation integer,Col varchar(6),FontNumber integer,AnchorPosition integer,TextStyle integer)
+SELECT * FROM AddGeometryColumn('','cartographictext','geom',-1,'POINT', 2);
+INSERT INTO CartographicText (SELECT DISTINCT ON (TOID) * FROM CartographicText_WithDuplicates)
+DROP TABLE CartographicText_WithDuplicates;
+ALTER TABLE CartographicSymbol RENAME TO CartographicSymbol_WithDuplicates;
+CREATE TABLE CartographicSymbol (TOID varchar(20),FeatureCode integer,Orientation integer,SymbolClass varchar(120))
+SELECT * FROM AddGeometryColumn('','cartographicsymbol','geom',-1,'POINT', 2);
+INSERT INTO CartographicSymbol (SELECT DISTINCT ON (TOID) * FROM CartographicSymbol_WithDuplicates)
+DROP TABLE CartographicSymbol_WithDuplicates;
+ALTER TABLE BoundaryLine RENAME TO BoundaryLine_WithDuplicates;
+CREATE TABLE BoundaryLine (TOID varchar(20),FeatureCode integer)
+SELECT * FROM AddGeometryColumn('','boundaryline','geom',-1,'GEOMETRY', 2);
+INSERT INTO BoundaryLine (SELECT DISTINCT ON (TOID) * FROM BoundaryLine_WithDuplicates)
+DROP TABLE BoundaryLine_WithDuplicates;
+ALTER TABLE BoundaryMember RENAME TO BoundaryMember_WithDuplicates;
+CREATE TABLE BoundaryMember (TOID varchar(20),FeatureCode integer)
+SELECT * FROM AddGeometryColumn('','boundarymember','geom',-1,'POINT', 2);
+INSERT INTO BoundaryMember (SELECT DISTINCT ON (TOID) * FROM BoundaryMember_WithDuplicates)
+DROP TABLE BoundaryMember_WithDuplicates;
+
+
+Create Indexes
+
+VACUUM ANALYZE TopographicPoint
+SELECT updateGeometrySRID('topographicpoint', 'geom', 27700);
+VACUUM ANALYZE TopographicPoint
+SELECT updateGeometrySRID('topographicpoint', 'geom', 27700);
+CREATE INDEX IDX_TopographicPoint_Geom ON TopographicPoint USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE TopographicLine
+SELECT updateGeometrySRID('topographicline', 'geom', 27700);
+CREATE INDEX IDX_TopographicLine_Geom ON TopographicLine USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE TopographicArea
+SELECT updateGeometrySRID('topographicarea', 'geom', 27700);
+CREATE INDEX IDX_TopographicArea_Geom ON TopographicArea USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE TopDetail
+SELECT updateGeometrySRID('topdetail', 'geom', 27700);
+CREATE INDEX IDX_TopDetail_Geom ON TopDetail USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE DepartedFeature
+VACUUM ANALYZE CartographicText
+SELECT updateGeometrySRID('cartographictext', 'geom', 27700);
+CREATE INDEX IDX_CartographicText_Geom ON CartographicText USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE CartographicSymbol
+SELECT updateGeometrySRID('cartographicsymbol', 'geom', 27700);
+CREATE INDEX IDX_CartographicSymbol_Geom ON CartographicSymbol USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE BoundaryLine
+SELECT updateGeometrySRID('boundaryline', 'geom', 27700);
+CREATE INDEX IDX_BoundaryLine_Geom ON BoundaryLine USING GIST ( Geom GIST_GEOMETRY_OPS);
+VACUUM ANALYZE BoundaryMember
+SELECT updateGeometrySRID('boundarymember', 'geom', 27700);
+CREATE INDEX IDX_BoundaryMember_Geom ON BoundaryMember USING GIST ( Geom GIST_GEOMETRY_OPS);
+
+
+Remove Indexes
+
+SELECT updateGeometrySRID('topographicpoint', 'geom',-1);
+DROP INDEX IDX_TopographicPoint_Geom;
+SELECT updateGeometrySRID('topographicline', 'geom',-1);
+DROP INDEX IDX_TopographicLine_Geom;
+SELECT updateGeometrySRID('topographicarea', 'geom',-1);
+DROP INDEX IDX_TopographicArea_Geom;
+SELECT updateGeometrySRID('topdetail', 'geom',-1);
+DROP INDEX IDX_TopDetail_Geom;
+SELECT updateGeometrySRID('cartographictext', 'geom',-1);
+DROP INDEX IDX_CartographicText_Geom;
+SELECT updateGeometrySRID('cartographicsymbol', 'geom',-1);
+DROP INDEX IDX_CartographicSymbol_Geom;
+SELECT updateGeometrySRID('boundaryline', 'geom',-1);
+DROP INDEX IDX_BoundaryLine_Geom;
+SELECT updateGeometrySRID('boundarymember', 'geom',-1);
+DROP INDEX IDX_BoundaryMember_Geom;
+
+Apply updates (assumes you imported into tables with an "UPDATE_" prefix)
+
+DELETE FROM TopographicPoint WHERE TopographicPoint.TOID IN (SELECT TOID FROM UPDATE_TopographicPoint)
+DELETE FROM TopographicPoint WHERE TopographicPoint.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM TopographicLine WHERE TopographicLine.TOID IN (SELECT TOID FROM UPDATE_TopographicLine)
+DELETE FROM TopographicLine WHERE TopographicLine.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM TopographicArea WHERE TopographicArea.TOID IN (SELECT TOID FROM UPDATE_TopographicArea)
+DELETE FROM TopographicArea WHERE TopographicArea.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM TopDetail WHERE TopDetail.TOID IN (SELECT TOID FROM UPDATE_TopDetail)
+DELETE FROM TopDetail WHERE TopDetail.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM CartographicText WHERE CartographicText.TOID IN (SELECT TOID FROM UPDATE_CartographicText)
+DELETE FROM CartographicText WHERE CartographicText.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM CartographicSymbol WHERE CartographicSymbol.TOID IN (SELECT TOID FROM UPDATE_CartographicSymbol)
+DELETE FROM CartographicSymbol WHERE CartographicSymbol.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM BoundaryLine WHERE BoundaryLine.TOID IN (SELECT TOID FROM UPDATE_BoundaryLine)
+DELETE FROM BoundaryLine WHERE BoundaryLine.TOID IN (SELECT TOID FROM DepartedFeature)
+DELETE FROM BoundaryMember WHERE BoundaryMember.TOID IN (SELECT TOID FROM UPDATE_BoundaryMember)
+DELETE FROM BoundaryMember WHERE BoundaryMember.TOID IN (SELECT TOID FROM DepartedFeature)

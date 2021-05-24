@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osgb:roadInformationMember
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v7/OSDNFFeatures.xsd'
+  >
+  <osgb:RoadRouteInformation fid='osgb4000000023046084'>
+    <osgb:version>2</osgb:version>
+    <osgb:versionDate>2005-09-12</osgb:versionDate>
+    <osgb:theme>Road Routing Information</osgb:theme>
+    <osgb:changeHistory>
+      <osgb:changeDate>2002-11-01</osgb:changeDate>
+      <osgb:reasonForChange>New</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:descriptiveGroup>Road Routing Information</osgb:descriptiveGroup>
+    <osgb:environmentQualifier>
+      <osgb:instruction>No Turn</osgb:instruction>
+    </osgb:environmentQualifier>
+    <osgb:directedLink orientation='-' xlink:href='#osgb4000000023380775'/>
+    <osgb:directedLink orientation='-' xlink:href='#osgb4000000023380777'/>
+  </osgb:RoadRouteInformation>
+</osgb:roadInformationMember>

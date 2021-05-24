@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osgb:FeatureCollection
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v2/OSDNFFeatures.xsd'
+fid='GDS-2185-1'>
+  <osgb:addressPointMember>
+    <osgb:AddressPoint fid='osgb1000002124226633'>
+      <osgb:version>1</osgb:version>
+      <osgb:versionDate>2002-08-18</osgb:versionDate>
+      <osgb:theme>Address</osgb:theme>
+      <osgb:addressStatus>
+        <osgb:matchStatus>Matched</osgb:matchStatus>
+        <osgb:physicalStatus>Existing</osgb:physicalStatus>
+        <osgb:positionalQuality accuracy='Surveyed'>Final</osgb:positionalQuality>
+        <osgb:structureType>Permanent Building</osgb:structureType>
+      </osgb:addressStatus>
+      <osgb:OSAPR>APPXAR8J5GG4ABX0NV</osgb:OSAPR>
+      <osgb:point>
+        <gml:Point srsName='osgb:BNG'>
+          <gml:coordinates>278218.800,187803.800</gml:coordinates>
+        </gml:Point>
+      </osgb:point>
+      <osgb:postalAddress>
+        <osgb:buildingNumber>200</osgb:buildingNumber>
+        <osgb:thoroughfare>MARGAM ROAD</osgb:thoroughfare>
+        <osgb:postTown>PORT TALBOT</osgb:postTown>
+        <osgb:postCode type='Small'>SA13 2BU</osgb:postCode>
+        <osgb:deliveryPointSuffix>1N</osgb:deliveryPointSuffix>
+      </osgb:postalAddress>
+      <osgb:postalAddressDate>2002-07-19</osgb:postalAddressDate>
+      <osgb:referenceToTopographicArea xlink:href='#osgb1000022051714'/>
+    </osgb:AddressPoint>
+  </osgb:addressPointMember>
+</osgb:FeatureCollection>

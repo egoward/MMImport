@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osgb:roadInformationMember
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v7/OSDNFFeatures.xsd'
+  >
+  <osgb:RoadLinkInformation fid='osgb4000000023701334'>
+    <osgb:version>1</osgb:version>
+    <osgb:versionDate>2006-01-27</osgb:versionDate>
+    <osgb:theme>Road Routing Information</osgb:theme>
+    <osgb:changeHistory>
+      <osgb:changeDate>2005-10-13</osgb:changeDate>
+      <osgb:reasonForChange>New</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:descriptiveGroup>Road Routing Information</osgb:descriptiveGroup>
+    <osgb:environmentQualifier>
+      <osgb:classification>Traffic Calming</osgb:classification>
+    </osgb:environmentQualifier>
+    <osgb:referenceToRoadLink xlink:href='#osgb4000000023272502'/>
+  </osgb:RoadLinkInformation>
+</osgb:roadInformationMember>

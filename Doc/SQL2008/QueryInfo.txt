@@ -1,0 +1,39 @@
+Started at 2009/04/20-10:29:33
+Loading schema : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xsd
+Loading transform : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Data Source=GORDON;Initial Catalog=MasterMap;Integrated Security=True;Application Name="MMImport (bulk load)"
+Connected OK
+Output processor connected
+Fetching info
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicPoint
+Result : 150
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicLine
+Result : 14761
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicArea
+Result : 5361
+-- Running SQL:
+SELECT COUNT(*) FROM TopDetail
+Result : 149
+-- Running SQL:
+SELECT COUNT(*) FROM DepartedFeature
+Result : 0
+-- Running SQL:
+SELECT COUNT(*) FROM CartographicText
+Result : 939
+-- Running SQL:
+SELECT COUNT(*) FROM CartographicSymbol
+Result : 146
+-- Running SQL:
+SELECT COUNT(*) FROM BoundaryLine
+Result : 32
+-- Running SQL:
+SELECT COUNT(*) FROM BoundaryMember
+Result : 0
+Shutting down output processor
+Shutdown complete : (0.049 seconds)
+Finished at 2009/04/20-10:29:33

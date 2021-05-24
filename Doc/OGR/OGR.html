@@ -1,0 +1,147 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Importing into OGR</title>
+		<style type="text/css">
+        .hilightText {
+	        background-color: #FFFF00;
+        }
+		.table1 {
+	border-collapse: collapse;
+}
+.codeBlock {
+	padding: 4px;
+	border-style: solid;
+	border-width: thin;
+	margin-left: 40px;
+}
+		    .style1
+            {
+                width: 100%;
+            }
+		</style>
+	</head>
+	<body style="font-family: Arial">
+	
+        <h2>Initial Configuration</h2>
+	<p>
+            First ensure the export target is set to &quot;OGR&quot;.</p>
+        <p>
+            OGR supports multiple backends.&nbsp; We export the data as a number of layers 
+            within a single datasource.</p>
+	
+        <h2>ESRI Shape Files (.SHP)</h2>
+        <p>We recommend you select the following options:</p>
+        <table class="style1">
+            <tr>
+                <td>
+                    DriverName</td>
+                <td>
+                    ESRI Shapefile</td>
+            </tr>
+            <tr>
+                <td>
+                    DataSourceName</td>
+                <td>
+                    C:\temp\MasterMapOut</td>
+            </tr>
+            <tr>
+                <td>
+                    LayerName</td>
+                <td>
+                    MM_{0}</td>
+            </tr>
+        </table>
+        <p>By default, successive files will be overwritten.</p>
+        <p>To merge a large number of gz files into a single shape file, set &quot;Append To 
+            Existing Files&quot; to &quot;True&quot;.</p>
+        <p>To import each input file into a collection of separate output file, set the 
+            LayerName to something like &quot;MM_{0}_{1}&quot;.&nbsp; {0} will be the layer name, eg 
+            &#39;TopographicArea&#39; and &#39;1&#39; will be the source filename eg 
+            &#39;InitialSupply_47135-SS7886&#39;.&nbsp; Files will then have names like 
+            &#39;MM_TopographicArea_InitialSupply_47135-SS7886-5i1.shp&#39;.</p>
+        <p>To automatically create directories for each input file, set 
+            &quot;OutputEachFileToItsOwnDirectory&quot; to &quot;True&quot;.</p>
+        <p>Note that shape files use 32 bit integer file offsets internally - if you try to 
+            create a file more than 2Gb in size, problems will occur.</p>
+	
+        <h2>MapInfo TAB Files (.TAB)</h2>
+        <p>We recommend you select the following options:</p>
+        <table class="style1">
+            <tr>
+                <td>
+                    DriverName</td>
+                <td>
+                    MapInfo File</td>
+            </tr>
+            <tr>
+                <td>
+                    DataSourceName</td>
+                <td>
+                    C:\temp\MasterMapOut</td>
+            </tr>
+            <tr>
+                <td>
+                    LayerName</td>
+                <td>
+                    MM_{0}</td>
+            </tr>
+        </table>
+        <p>Additional options function as per the SHP file.</p>
+	
+        <h2>GML Files</h2>
+        <table class="style1">
+            <tr>
+                <td>
+                    DriverName</td>
+                <td>
+                    GML</td>
+            </tr>
+            <tr>
+                <td>
+                    DataSourceName</td>
+                <td>
+                    C:\temp\MasterMapOut\Map.GML</td>
+            </tr>
+            <tr>
+                <td>
+                    LayerName</td>
+                <td>
+                    MM_{0}</td>
+            </tr>
+        </table>
+        <p>GML files can contain multiple layers.</p>
+        <p>Use OutputEachFileToItsOwnDirectory to get each input tile individually.</p>
+        <p>Use AppendToExistingFiles to merge lots of input files together</p>
+	
+        <h2>KML Files</h2>
+        <table class="style1">
+            <tr>
+                <td>
+                    DriverName</td>
+                <td>
+                    KML</td>
+            </tr>
+            <tr>
+                <td>
+                    DataSourceName</td>
+                <td>
+                    C:\temp\MasterMapOut\Map.KML</td>
+            </tr>
+            <tr>
+                <td>
+                    LayerName</td>
+                <td>
+                    MM_{0}</td>
+            </tr>
+        </table>
+        <p>Options as per KML.&nbsp; Attributes are output in the description.&nbsp; No 
+            formatting information is generated.</p>
+        <p>&nbsp;</p>
+        <h2>Importing data using WGS84 / Latitude and Logitude</h2>
+	<p>You can convert data from OS grid references (known as OSGB1936 or EPSG:27700) to Latitude and Logitude systems used by GPS (known as WGS84 or EPSG:4326).  To do this, enable the "ConvertToWGS84" option to true and specify the SRID of 4326.</p>
+	<p>The conversion is different from that available in PostGIS and PostGIS does not include the OSTN02 dataset used by Ordnance Survey.  If you're mainly working with WGS84/GPScoordinates, I recommend you use this option.  If you're mainly working with data surveyed in the UK then it won't be appropriate.  If you get it wrong, the errors in coordinate conversion will be of the order of 7 meters.</p>
+               
+	
+	</body>
+</html>

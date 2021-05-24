@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Copyright Edonica
+
+  XSL Transform flattening OS MasterMap in accordance with the OS style guide
+-->
+
+<xs:schema id="MMSchema" 
+           targetNamespace="http://tempuri.org/MMSchema.xsd" 
+           elementFormDefault="qualified" 
+           xmlns="http://tempuri.org/MMSchema.xsd" 
+           xmlns:mstns="http://tempuri.org/MMSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gml="http://www.opengis.net/gml">
+
+  <xs:import namespace="http://www.opengis.net/gml"/>
+  
+  <xs:element name="TopographicPoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="PointClass" type="PointClass" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TopographicLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="LineClass" type="LineClass" />
+        <xs:element name="Geom" type="GMLStub_Polyline" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Filled regions of the map-->
+  <xs:element name="TopographicArea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="FillClass" type="FillStyle" />
+        <xs:element name="FillPattern" type="FillPattern" />
+        <xs:element name="Geom" type="GMLStub_Region" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--"Top detail" is regions drawn on top of the TopographicArea eg. Pylons-->
+  <xs:element name="TopDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="FillClass" type="FillStyle" />
+        <xs:element name="FillPattern" type="FillPattern" />
+        <xs:element name="Geom" type="GMLStub_Region" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--"Top detail" is regions drawn on top of the TopographicArea eg. Pylons-->
+  <xs:element name="DepartedFeature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="ReasonForDeparture" type="ReasonForDeparture" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CartographicText">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <!--The actual text-->
+        <xs:element name="TextString" type="TextString"/>
+        <!--Height in meters-->
+        <xs:element name="Height" type="xs:double" />
+        <!--Angle in 10's of degrees (0-3599) CCW from due East -->
+        <xs:element name="Orientation" type="xs:int" />
+        <!--Colour from RGB in hex-->
+        <xs:element name="Col" type="Col" />
+        <!--Just a number-->
+        <xs:element name="FontNumber" type="xs:int" />
+        <!--Just a number - 0 to 8-->
+        <xs:element name="AnchorPosition" type="xs:int" />
+        <!--0 = Regular, 1=Italic-->
+        <xs:element name="TextStyle" type="xs:int" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CartographicSymbol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="Orientation" type="xs:int" />
+        <!--Angle in 10's of degrees (0-3599) CCW from due East -->
+        <xs:element name="SymbolClass" type="SymbolClass" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BoundaryLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="Geom" type="GMLStub_Polyline" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="BoundaryMember">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TOID" type="TOID" />
+        <xs:element name="FeatureCode" type="xs:int" />
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="TOID">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FillStyle">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="120" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FillPattern">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="120" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PointClass">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="120" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SymbolClass">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="120" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LineClass">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="120" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Col">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TextString">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ReasonForDeparture">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--Stub datatypes so we can have schema validation without trawling the GML-->
+  <xs:complexType name="GMLStub_Point">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GMLStub_Polyline">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GMLStub_Region">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

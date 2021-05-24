@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osgb:roadMember
+xmlns:osgb='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xsi:schemaLocation='http://www.ordnancesurvey.co.uk/xml/namespaces/osgb http://www.ordnancesurvey.co.uk/xml/schema/v7/OSDNFFeatures.xsd'
+  >
+  <osgb:Road fid='osgb4000000023465696'>
+    <osgb:version>5</osgb:version>
+    <osgb:versionDate>2006-02-06</osgb:versionDate>
+    <osgb:theme>Road Network</osgb:theme>
+    <osgb:changeHistory>
+      <osgb:changeDate>2003-03-13</osgb:changeDate>
+      <osgb:reasonForChange>New</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:changeHistory>
+      <osgb:changeDate>2005-03-11</osgb:changeDate>
+      <osgb:reasonForChange>Modified</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:changeHistory>
+      <osgb:changeDate>2005-11-23</osgb:changeDate>
+      <osgb:reasonForChange>Modified</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:changeHistory>
+      <osgb:changeDate>2006-01-20</osgb:changeDate>
+      <osgb:reasonForChange>Modified</osgb:reasonForChange>
+    </osgb:changeHistory>
+    <osgb:descriptiveGroup>Named Road</osgb:descriptiveGroup>
+    <osgb:roadName>WORTING ROAD</osgb:roadName>
+    <osgb:networkMember xlink:href='#osgb4000000023258082'/>
+    <osgb:networkMember xlink:href='#osgb4000000023262703'/>
+    <osgb:networkMember xlink:href='#osgb4000000023272376'/>
+    <osgb:networkMember xlink:href='#osgb4000000023291922'/>
+    <osgb:networkMember xlink:href='#osgb4000000023291923'/>
+    <osgb:networkMember xlink:href='#osgb4000000023291950'/>
+    <osgb:networkMember xlink:href='#osgb4000000023291953'/>
+    <osgb:networkMember xlink:href='#osgb4000000023291955'/>
+    <osgb:networkMember xlink:href='#osgb4000000023292051'/>
+    <osgb:networkMember xlink:href='#osgb4000000023292066'/>
+    <osgb:networkMember xlink:href='#osgb4000000023329994'/>
+    <osgb:networkMember xlink:href='#osgb4000000023329995'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330082'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330083'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330084'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330085'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330283'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330284'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330285'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330286'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330301'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330302'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330313'/>
+    <osgb:networkMember xlink:href='#osgb4000000023330315'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380703'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380756'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380757'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380758'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380773'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380775'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380776'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380777'/>
+    <osgb:networkMember xlink:href='#osgb4000000023380778'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381004'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381005'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381006'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381007'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381008'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381009'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381016'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381021'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381023'/>
+    <osgb:networkMember xlink:href='#osgb4000000023381024'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423691'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423692'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423719'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423720'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423721'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423722'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423723'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423731'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423732'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423733'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423734'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423735'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423736'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423895'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423896'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423897'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423922'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423923'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423924'/>
+    <osgb:networkMember xlink:href='#osgb4000000023423925'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449316'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449326'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449327'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449393'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449394'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449395'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449396'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449397'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449398'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449399'/>
+    <osgb:networkMember xlink:href='#osgb4000000023449412'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461139'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461140'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461144'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461145'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461147'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461159'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461160'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461161'/>
+    <osgb:networkMember xlink:href='#osgb4000000023461162'/>
+    <osgb:networkMember xlink:href='#osgb4000000023464704'/>
+    <osgb:networkMember xlink:href='#osgb4000000023464707'/>
+    <osgb:networkMember xlink:href='#osgb4000000023464708'/>
+    <osgb:networkMember xlink:href='#osgb4000000023634013'/>
+    <osgb:networkMember xlink:href='#osgb4000000023634014'/>
+    <osgb:networkMember xlink:href='#osgb4000000023634016'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701501'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701502'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701503'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701504'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701520'/>
+    <osgb:networkMember xlink:href='#osgb4000000023701959'/>
+    <osgb:networkMember xlink:href='#osgb4000000023706516'/>
+    <osgb:networkMember xlink:href='#osgb4000000023710096'/>
+    <osgb:boundedBy>
+      <gml:Box srsName='osgb:BNG'>
+        <gml:coordinates>458857.157,151712.000 463316.000,152033.000</gml:coordinates>
+      </gml:Box>
+    </osgb:boundedBy>
+  </osgb:Road>
+</osgb:roadMember>

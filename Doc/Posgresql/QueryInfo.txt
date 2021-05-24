@@ -1,0 +1,39 @@
+Starting
+Loading schema : OSMMTopography.xsd
+Loading trasform : OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Server=localhost;Database=MasterMap;User Id=postgres;CommandTimeout=86400;
+Connected OK
+Output processor connected
+Fetching info
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicPoint
+Result : 146
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicLine
+Result : 15371
+-- Running SQL:
+SELECT COUNT(*) FROM TopographicArea
+Result : 5194
+-- Running SQL:
+SELECT COUNT(*) FROM TopDetail
+Result : 145
+-- Running SQL:
+SELECT COUNT(*) FROM DepartedFeature
+Result : 0
+-- Running SQL:
+SELECT COUNT(*) FROM CartographicText
+Result : 929
+-- Running SQL:
+SELECT COUNT(*) FROM CartographicSymbol
+Result : 144
+-- Running SQL:
+SELECT COUNT(*) FROM BoundaryLine
+Result : 33
+-- Running SQL:
+SELECT COUNT(*) FROM BoundaryMember
+Result : 0
+Shutting down output processor
+Shutdown complete
+Done

@@ -1,0 +1,176 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title></title>
+		<style type="text/css">
+        .hilightText {
+	        background-color: #FFFF00;
+        }
+		.table1 {
+	border-collapse: collapse;
+}
+.style1 {
+	text-align: center;
+}
+.codeBlock {
+	padding: 4px;
+	border-style: solid;
+	border-width: thin;
+	margin-left: 40px;
+}
+		</style>
+	</head>
+	<body style="font-family: Arial">
+	<h1>Ordnance Survey Data Importer</h1>
+        <h2>Overview</h2>
+	<p>This application will import MasterMap topographic data.&nbsp; The importer can be used in conjunction with products such as the <a href="http://mapserver.gis.umn.edu">
+                UMN MapServer</a>.&nbsp; It also performs coordinate conversion tasks in 
+        the accurate <a href="http://gps.ordnancesurvey.co.uk/convert.asp">Ordnance 
+        Survey way</a> (unlike a lot of software developed outside the UK - OS 
+        coordinates have a lot of history).</p>
+        <p>
+            The importer is open source in the broader sense and free for personal, educational, trial, 
+			development and demonstration use. Commercial use will incur a fee which will be used to promote the development of GIS 
+			projects.&nbsp; Please see the <a href="http://www.edonica.com/MMImport">Edonica web site</a> for more details.</p>
+	<p>Features:</p>
+        <ul>
+            <li>Full supply and change only updates (COU)</li>
+            <li>Supports geographically chunked and non geographically chunked data</li>
+            <li>Configurable database schema (XSD)</li>
+            <li>Configurable XSL transform based on Ordnance Survey survey SVG conversion</li>
+            <li>Support for Ordnance Survey and Lat/Long coordinate systems using
+                <a href="http://www.ordnancesurvey.co.uk/oswebsite/gps/osnetfreeservices/about/surveying_osnet.html#6">
+                OSTN02</a></li>
+            <li>High performance - streams through compiled XSL and bulk load database APIs</li>
+        </ul>
+        <p>Supported input formats:</p>
+        <ul>
+            <li><a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/topography/index.html">
+                MasterMap Topography</a></li>
+            <li><a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/itn/index.html">
+                MasterMap ITN</a></li>
+            <li><a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/address/index.html">
+                Address Layer 1</a></li>
+            <li><a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/addresslayer2/">
+                Address Layer 2</a></li>
+        </ul>
+        <p>Supported Targets:</p>
+        <ul>
+            <li><a href="http://www.postgresql.org/">PostgreSQL</a> with
+                <a href="http://postgis.refractions.net/">PostGIS</a></li>
+            <li><a href="http://www.microsoft.com/sqlserver/2008/">SQL Server 2008</a> 
+                (including SQL Server Express 2008)</li>
+            <li>Through <a href="http://www.gdal.org/ogr/">OGR</a> we have tested...<ul>
+                <li><a href="http://en.wikipedia.org/wiki/Shapefile">ESRI Shapefile</a></li>
+                <li>MapInfo TAB File</li>
+                <li>Flat GML</li>
+                <li>KML (raw)</li>
+                </ul>
+            </li>
+        </ul>
+        <p>Under development:</p>
+        <ul>
+            <li><a href="http://www.oracle.com/technology/products/spatial/index.html">Oracle 
+                Spatial</a></li>
+            <li><a href="http://www.gaia-gis.it/spatialite/">Spatialite</a></li>
+        </ul>
+        <h2>
+            Requirements</h2>
+        <p>
+            The application is written with Visual Studio 2008 SP1 and requires the
+            <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=AB99342F-5D1A-413D-8319-81DA479AB0D7">
+            Microsoft .Net Framework 3.5 Service Pack 1</a>.</p>
+        <p>
+            Memory usage by the application is fairly light as all data is streamed and the 
+            XSL is compiled.&nbsp; Generally the backend database / filesystem will be the 
+            bottleneck.&nbsp; Concurrency can be simply achieved by grouping your data into 
+            batches and running multiple batches concurrently.&nbsp; This may change in 
+            future releases.</p>
+        <p>
+            &nbsp;</p>
+        <h2>
+            Quick Start - Importing a single file</h2>
+        <p>
+            Run MMImport.EXE</p>
+        <p>
+            If you are using Ordnance Survey topographic data (building outlines etc), leave 
+            the OutputSchema and Tranform settings as their defaults.&nbsp; Otherwise, 
+            select the options and pick an appropriate schema (XSD) and transform (XSLT) 
+            file.&nbsp; We have transforms for address data and the Integrated Transport 
+            Network (roads).</p>
+        <p>
+            From the Actions menu, select Test Configuration / Connection.&nbsp; The 
+            application will start and stop the streaming pipeline and validate everything.&nbsp; 
+            No data will be imported.&nbsp; If you are happy, select File &gt; &quot;Save Defaults&quot;.</p>
+        <p>
+            Initially, we recommend you import a small amount of data into ESRI Shape files 
+            as per the default configuration.&nbsp; Select Actions &gt; &quot;Import Files...&quot; and 
+            pick a reasonably sized file.</p>
+        <p>
+            An ESRI shapefile should be generated in a &quot;C:\temp\MasterMapOut&quot; folder on your 
+            system.&nbsp; If the files are a reasonable size, the chances are you have some 
+            valid data in.&nbsp; You can use a GIS application to view the shape file, or a 
+            database application to look in the DBF file.</p>
+        <p>
+            ESRI shapefiles should import very quickly and will let you know if the importer 
+            or the back end that&#39;s limiting performance.</p>
+        <h2>
+            Documentation for export formats</h2>
+        <p style="margin-left: 40px">
+            <a href="Posgresql/PostgreSQL.html">PostgreSQL / PostGIS</a></p>
+        <p style="margin-left: 40px">
+            <a href="OGR/OGR.html">OGR - Shapefile, MapInfo, GML, KML</a></p>
+        <p style="margin-left: 40px">
+            SQL Server 2008</p>
+        <p>
+            &nbsp;</p>
+        <h2>
+            Quick Start - Reprojecting Maps between OS grid references and Lat/Long</h2>
+        <p>
+            Run MMImport.EXE</p>
+        <p>
+            Select File &gt; Reproject Map</p>
+        <p>
+            Pick the direction of the transform.</p>
+        <p>
+            Click the browse button to select an inputs and outputs</p>
+        <p>
+            Click &#39;Go&#39;.</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p class="style1">
+            &nbsp;</p>
+               
+	
+	</body>
+</html>

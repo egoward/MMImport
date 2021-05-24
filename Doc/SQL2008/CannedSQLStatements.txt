@@ -1,0 +1,129 @@
+You may wish to invoke these SQL statements manually rather than via the application.
+
+These SQL statements were simply obtained by performing the function and capturing the output
+
+Create Tables
+CREATE TABLE TopographicPoint (TOID nvarchar(20),FeatureCode int,PointClass nvarchar(120),Geom geometry)
+CREATE TABLE TopographicLine (TOID nvarchar(20),FeatureCode int,LineClass nvarchar(120),Geom geometry)
+CREATE TABLE TopographicArea (TOID nvarchar(20),FeatureCode int,FillClass nvarchar(120),FillPattern nvarchar(120),Geom geometry)
+CREATE TABLE TopDetail (TOID nvarchar(20),FeatureCode int,FillClass nvarchar(120),FillPattern nvarchar(120),Geom geometry)
+CREATE TABLE DepartedFeature (TOID nvarchar(20),ReasonForDeparture nvarchar(255))
+CREATE TABLE CartographicText (TOID nvarchar(20),FeatureCode int,TextString nvarchar(255),Height float,Orientation int,Col nvarchar(6),FontNumber int,AnchorPosition int,TextStyle int,Geom geometry)
+CREATE TABLE CartographicSymbol (TOID nvarchar(20),FeatureCode int,Orientation int,SymbolClass nvarchar(120),Geom geometry)
+CREATE TABLE BoundaryLine (TOID nvarchar(20),FeatureCode int,Geom geometry)
+CREATE TABLE BoundaryMember (TOID nvarchar(20),FeatureCode int,Geom geometry)
+
+
+Delete Tables
+DROP TABLE TopographicPoint
+DROP TABLE TopographicLine
+DROP TABLE TopographicArea
+DROP TABLE TopDetail
+DROP TABLE DepartedFeature
+DROP TABLE CartographicText
+DROP TABLE CartographicSymbol
+DROP TABLE BoundaryLine
+DROP TABLE BoundaryMember
+
+
+
+Remove duplicates
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicPoint )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicLine )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicArea )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopDetail )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM DepartedFeature )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM CartographicText )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM CartographicSymbol )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM BoundaryLine )DELETE FROM numbered WHERE nr > 1
+WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM BoundaryMember )DELETE FROM numbered WHERE nr > 1
+
+
+
+Create Indexes
+
+ALTER TABLE TopographicPoint ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE TopographicPoint ADD CONSTRAINT PK_TopographicPoint PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_TopographicPoint_Geom ON TopographicPoint(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE TopographicLine ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE TopographicLine ADD CONSTRAINT PK_TopographicLine PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_TopographicLine_Geom ON TopographicLine(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE TopographicArea ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE TopographicArea ADD CONSTRAINT PK_TopographicArea PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_TopographicArea_Geom ON TopographicArea(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE TopDetail ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE TopDetail ADD CONSTRAINT PK_TopDetail PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_TopDetail_Geom ON TopDetail(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE DepartedFeature ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE DepartedFeature ADD CONSTRAINT PK_DepartedFeature PRIMARY KEY (TOID)
+ALTER TABLE CartographicText ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE CartographicText ADD CONSTRAINT PK_CartographicText PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_CartographicText_Geom ON CartographicText(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE CartographicSymbol ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE CartographicSymbol ADD CONSTRAINT PK_CartographicSymbol PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_CartographicSymbol_Geom ON CartographicSymbol(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE BoundaryLine ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE BoundaryLine ADD CONSTRAINT PK_BoundaryLine PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_BoundaryLine_Geom ON BoundaryLine(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+ALTER TABLE BoundaryMember ALTER COLUMN TOID nvarchar(20) NOT NULL 
+ALTER TABLE BoundaryMember ADD CONSTRAINT PK_BoundaryMember PRIMARY KEY (TOID)
+CREATE SPATIAL INDEX IX_BoundaryMember_Geom ON BoundaryMember(Geom) WITH ( BOUNDING_BOX = (0,0,900000,1100000), CELLS_PER_OBJECT=16, GRIDS=(MEDIUM,MEDIUM,MEDIUM,MEDIUM) )
+
+
+Remove Indexes
+DROP INDEX IX_TopographicPoint_Geom ON TopographicPoint
+ALTER TABLE TopographicPoint DROP CONSTRAINT PK_TopographicPoint
+ALTER TABLE TopographicPoint ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_TopographicLine_Geom ON TopographicLine
+ALTER TABLE TopographicLine DROP CONSTRAINT PK_TopographicLine
+ALTER TABLE TopographicLine ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_TopographicArea_Geom ON TopographicArea
+ALTER TABLE TopographicArea DROP CONSTRAINT PK_TopographicArea
+ALTER TABLE TopographicArea ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_TopDetail_Geom ON TopDetail
+ALTER TABLE TopDetail DROP CONSTRAINT PK_TopDetail
+ALTER TABLE TopDetail ALTER COLUMN TOID nvarchar(20)
+ALTER TABLE DepartedFeature DROP CONSTRAINT PK_DepartedFeature
+ALTER TABLE DepartedFeature ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_CartographicText_Geom ON CartographicText
+ALTER TABLE CartographicText DROP CONSTRAINT PK_CartographicText
+ALTER TABLE CartographicText ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_CartographicSymbol_Geom ON CartographicSymbol
+ALTER TABLE CartographicSymbol DROP CONSTRAINT PK_CartographicSymbol
+ALTER TABLE CartographicSymbol ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_BoundaryLine_Geom ON BoundaryLine
+ALTER TABLE BoundaryLine DROP CONSTRAINT PK_BoundaryLine
+ALTER TABLE BoundaryLine ALTER COLUMN TOID nvarchar(20)
+DROP INDEX IX_BoundaryMember_Geom ON BoundaryMember
+ALTER TABLE BoundaryMember DROP CONSTRAINT PK_BoundaryMember
+ALTER TABLE BoundaryMember ALTER COLUMN TOID nvarchar(20)
+
+
+
+
+Apply updates (assumes you imported into tables with an "UPDATE_" prefix)
+
+DELETE FROM TopographicPoint WHERE TopographicPoint.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM TopographicPoint WHERE TopographicPoint.TOID IN (SELECT TOID FROM UPDATE_TopographicPoint)
+INSERT INTO TopographicPoint SELECT * FROM UPDATE_TopographicPoint
+DELETE FROM TopographicLine WHERE TopographicLine.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM TopographicLine WHERE TopographicLine.TOID IN (SELECT TOID FROM UPDATE_TopographicLine)
+INSERT INTO TopographicLine SELECT * FROM UPDATE_TopographicLine
+DELETE FROM TopographicArea WHERE TopographicArea.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM TopographicArea WHERE TopographicArea.TOID IN (SELECT TOID FROM UPDATE_TopographicArea)
+INSERT INTO TopographicArea SELECT * FROM UPDATE_TopographicArea
+DELETE FROM TopDetail WHERE TopDetail.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM TopDetail WHERE TopDetail.TOID IN (SELECT TOID FROM UPDATE_TopDetail)
+INSERT INTO TopDetail SELECT * FROM UPDATE_TopDetail
+DELETE FROM CartographicText WHERE CartographicText.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM CartographicText WHERE CartographicText.TOID IN (SELECT TOID FROM UPDATE_CartographicText)
+INSERT INTO CartographicText SELECT * FROM UPDATE_CartographicText
+DELETE FROM CartographicSymbol WHERE CartographicSymbol.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM CartographicSymbol WHERE CartographicSymbol.TOID IN (SELECT TOID FROM UPDATE_CartographicSymbol)
+INSERT INTO CartographicSymbol SELECT * FROM UPDATE_CartographicSymbol
+DELETE FROM BoundaryLine WHERE BoundaryLine.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM BoundaryLine WHERE BoundaryLine.TOID IN (SELECT TOID FROM UPDATE_BoundaryLine)
+INSERT INTO BoundaryLine SELECT * FROM UPDATE_BoundaryLine
+DELETE FROM BoundaryMember WHERE BoundaryMember.TOID IN (SELECT TOID FROM UPDATE_DepartedFeature)
+DELETE FROM BoundaryMember WHERE BoundaryMember.TOID IN (SELECT TOID FROM UPDATE_BoundaryMember)
+INSERT INTO BoundaryMember SELECT * FROM UPDATE_BoundaryMember

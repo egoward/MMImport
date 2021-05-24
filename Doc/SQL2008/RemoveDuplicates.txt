@@ -1,0 +1,30 @@
+Started at 2009/04/20-10:35:04
+Loading schema : C:\EdonicaGIS\Trunk\bin\Debug\..\..\MMImport\Transforms\Topo\OSMMTopography.xsd
+Loading transform : C:\EdonicaGIS\Trunk\bin\Debug\..\..\MMImport\Transforms\Topo\OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Data Source=GORDON;Initial Catalog=MasterMap;Integrated Security=True;Application Name="MMImport (bulk load)"
+Connected OK
+Output processor connected
+Removing duplicates
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicPoint )DELETE FROM numbered WHERE nr > 1
+  returned : 6
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicLine )DELETE FROM numbered WHERE nr > 1
+  returned : 1376
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopographicArea )DELETE FROM numbered WHERE nr > 1
+  returned : 807
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM TopDetail )DELETE FROM numbered WHERE nr > 1
+  returned : 26
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM DepartedFeature )DELETE FROM numbered WHERE nr > 1
+  returned : 0
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM CartographicText )DELETE FROM numbered WHERE nr > 1
+  returned : 120
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM CartographicSymbol )DELETE FROM numbered WHERE nr > 1
+  returned : 71
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM BoundaryLine )DELETE FROM numbered WHERE nr > 1
+  returned : 2
+SQL:WITH numbered AS ( SELECT TOID, row_number() OVER ( PARTITION BY TOID ORDER BY TOID ) AS nr FROM BoundaryMember )DELETE FROM numbered WHERE nr > 1
+  returned : 0
+Shutting down output processor
+Shutdown complete : (1.149 seconds)
+Finished at 2009/04/20-10:35:05

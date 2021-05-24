@@ -1,0 +1,29 @@
+﻿Started at 2009/04/20-10:27:25
+Loading schema : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xsd
+Loading transform : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Data Source=GORDON;Initial Catalog=MasterMap;Integrated Security=True;Application Name="MMImport (bulk load)"
+Connected OK
+Output processor connected
+Creating table TopographicPoint
+SQL:CREATE TABLE TopographicPoint (TOID nvarchar(20),FeatureCode int,PointClass nvarchar(120),Geom geometry)
+Creating table TopographicLine
+SQL:CREATE TABLE TopographicLine (TOID nvarchar(20),FeatureCode int,LineClass nvarchar(120),Geom geometry)
+Creating table TopographicArea
+SQL:CREATE TABLE TopographicArea (TOID nvarchar(20),FeatureCode int,FillClass nvarchar(120),FillPattern nvarchar(120),Geom geometry)
+Creating table TopDetail
+SQL:CREATE TABLE TopDetail (TOID nvarchar(20),FeatureCode int,FillClass nvarchar(120),FillPattern nvarchar(120),Geom geometry)
+Creating table DepartedFeature
+SQL:CREATE TABLE DepartedFeature (TOID nvarchar(20),ReasonForDeparture nvarchar(255))
+Creating table CartographicText
+SQL:CREATE TABLE CartographicText (TOID nvarchar(20),FeatureCode int,TextString nvarchar(255),Height float,Orientation int,Col nvarchar(6),FontNumber int,AnchorPosition int,TextStyle int,Geom geometry)
+Creating table CartographicSymbol
+SQL:CREATE TABLE CartographicSymbol (TOID nvarchar(20),FeatureCode int,Orientation int,SymbolClass nvarchar(120),Geom geometry)
+Creating table BoundaryLine
+SQL:CREATE TABLE BoundaryLine (TOID nvarchar(20),FeatureCode int,Geom geometry)
+Creating table BoundaryMember
+SQL:CREATE TABLE BoundaryMember (TOID nvarchar(20),FeatureCode int,Geom geometry)
+Shutting down output processor
+Shutdown complete : (0.107 seconds)
+Finished at 2009/04/20-10:27:25

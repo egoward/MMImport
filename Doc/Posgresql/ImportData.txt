@@ -1,0 +1,85 @@
+﻿Starting
+Loading schema : OSMMTopography.xsd
+Loading trasform : OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Server=localhost;Database=MasterMap;User Id=postgres;CommandTimeout=86400;
+Connected OK
+Output processor connected
+Processing C:\GIS1\MasterMap\2182-SS7886-2c1.gz(1 of 1)
+TopographicPoint : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy TopographicPoint from STDIN";
+TopographicLine : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy TopographicLine from STDIN";
+TopographicArea : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy TopographicArea from STDIN";
+TopDetail : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy TopDetail from STDIN";
+DepartedFeature : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy DepartedFeature from STDIN";
+CartographicText : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy CartographicText from STDIN";
+CartographicSymbol : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy CartographicSymbol from STDIN";
+BoundaryLine : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy BoundaryLine from STDIN";
+BoundaryMember : Starting C:\gis1\pgsql\bin\psql.exe -d MasterMap postgres -c "copy BoundaryMember from STDIN";
+Note that output from bulk loader processes is buffered and may only appear at the end
+Line : 9 - 0.2%
+LOG line 9 : GML Description : Ordnance Survey, (c) Crown Copyright. All rights reserved, 2003-03-29
+LOG line 10 : GML bounded by : unknown
+LOG line 11 : Query time : 2003-03-29T16:15:34
+LOG line 16 : OS Query extent : 278000.000,186000.000 280000.000,188000.000
+Line : 100010 - 15.9%
+Line : 200002 - 29.1%
+Line : 300019 - 47.1%
+Line : 400015 - 66.3%
+Line : 500016 - 100.0%
+LOG line 501698 : OS Bounded By : 276753.650,183754.900 282807.970,190239.230
+Total time for import : 34.576523 seconds
+TopographicPoint : TopographicPoint - Waiting for bulk load to finish
+TopographicPoint : Bulk loader process has exited with code 0
+TopographicPoint : TopographicPoint - Done
+TopographicLine : TopographicLine - Waiting for bulk load to finish
+TopographicLine : Bulk loader process has exited with code 0
+TopographicLine : TopographicLine - Done
+TopographicArea : TopographicArea - Waiting for bulk load to finish
+TopographicArea : Bulk loader process has exited with code 0
+TopographicArea : TopographicArea - Done
+TopDetail : TopDetail - Waiting for bulk load to finish
+TopDetail : Bulk loader process has exited with code 0
+TopDetail : TopDetail - Done
+DepartedFeature : DepartedFeature - Waiting for bulk load to finish
+DepartedFeature : Bulk loader process has exited with code 0
+DepartedFeature : DepartedFeature - Done
+CartographicText : CartographicText - Waiting for bulk load to finish
+CartographicText : Bulk loader process has exited with code 0
+CartographicText : CartographicText - Done
+CartographicSymbol : CartographicSymbol - Waiting for bulk load to finish
+CartographicSymbol : Bulk loader process has exited with code 0
+CartographicSymbol : CartographicSymbol - Done
+BoundaryLine : BoundaryLine - Waiting for bulk load to finish
+BoundaryLine : Bulk loader process has exited with code 0
+BoundaryLine : BoundaryLine - Done
+BoundaryMember : BoundaryMember - Waiting for bulk load to finish
+BoundaryMember : Bulk loader process has exited with code 0
+BoundaryMember : BoundaryMember - Done
+Input: gml:description
+  Count: 1
+Input: gml:boundedBy
+  Count: 1
+Input: osgb:queryTime
+  Count: 1
+Input: osgb:queryExtent
+  Count: 1
+Input: osgb:cartographicMember
+  Count: 1073
+    Output: CartographicSymbol - 144
+    Output: CartographicText - 929
+Input: osgb:boundaryMember
+  Count: 33
+    Output: BoundaryLine - 33
+Input: osgb:topographicMember
+  Count: 20856
+    Output: TopographicPoint - 146
+    Output: TopographicLine - 15371
+    Output: TopDetail - 145
+    Output: TopographicArea - 5194
+Input: osgb:boundedBy
+  Count: 1
+Shutting down output processor
+Shutdown complete
+Done
+

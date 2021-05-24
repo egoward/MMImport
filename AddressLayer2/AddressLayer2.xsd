@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Copyright Edonica
+
+  XSL Transform flattening OS MasterMap XML data into a structure similar to that your might find in a CSV
+-->
+
+<xs:schema id="MMSchema" 
+           targetNamespace="http://tempuri.org/MMSchema.xsd" 
+           elementFormDefault="qualified" 
+           xmlns="http://tempuri.org/MMSchema.xsd" 
+           xmlns:mstns="http://tempuri.org/MMSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gml="http://www.opengis.net/gml">
+
+  <xs:import namespace="http://www.opengis.net/gml"/>
+  
+  <xs:element name="AddressPoint">
+    <xs:complexType>
+      <xs:sequence>
+        <!--1 OS Theme   -->
+        <xs:element name="OS_THEME" type="String20" />
+        <!--2 OS Address TOID (renamed from OS_A_TOID)-->
+        <xs:element name="TOID" type="TOID" />
+        <!--3 OS APR OA  -->
+        <xs:element name="OS_APR" type="String20" />
+        <!--4 RM UDPRN   -->
+        <xs:element name="RM_UDPRN" type="xs:int" />
+        <!--5 RM UMRRN   -->
+        <xs:element name="RM_UMRRN" type="xs:int" />
+        <!--6 RM Address Key   -->
+        <xs:element name="RM_ADD_KEY" type="xs:int" />
+        <!--7 RM Organisation Key   -->
+        <xs:element name="RM_ORG_KEY" type="xs:int" />
+        <!--8 VO CT UARN   -->
+        <xs:element name="VO_C_UARN" type="String20" />
+        <!--9 VO NDR UARN   -->
+        <xs:element name="VO_N_UARN" type="xs:int" />
+        <!--10 OS Ref To Address TOID   -->
+        <xs:element name="OS_RA_TOID" type="TOID" />
+        <!--11 OS Ref To OSAPR   -->
+        <xs:element name="OS_R_OSAPR" type="String20" />
+        <!--12 OS Ref To Topography TOID   -->
+        <xs:element name="OS_RT_TOID" type="TOID" />
+        <!--13 OS Ref To Carto Text TOID   -->
+        <xs:element name="OS_RC_TOID" type="TOID" />
+        <!--14 OS Ref To ITN Road Link TOID   -->
+        <xs:element name="OS_RL_TOID" type="TOID" />
+        <!--15 OS Ref To ITN Road TOID   -->
+        <xs:element name="OS_RR_TOID" type="TOID" />
+        <!--16 RM Ref To UDPRN   -->
+        <xs:element name="RM_R_UDPRN" type="xs:int" />
+        <!--17 RM Ref To Address Key   -->
+        <xs:element name="RM_RA_KEY" type="xs:int" />
+        <!--18 RM Ref To Organisation Key   -->
+        <xs:element name="RM_RO_KEY" type="xs:int" />
+        <!--19 OS Address Version   -->
+        <xs:element name="OS_A_TOIDV" type="xs:int" />
+
+        <!-- OS Address Change History -->
+
+        <!--20 OS Reason For Change 1   -->
+        <xs:element name="OS_A_RFC1" type="String30" />
+        <!--21 OS Change Date 1   -->
+        <xs:element name="OS_A_CD1" type="DateString" />
+        <!--22 OS Reason For Change 2   -->
+        <xs:element name="OS_A_RFC2" type="String30" />
+        <!--23 OS Change Date 2   -->
+        <xs:element name="OS_A_CD2" type="DateString" />
+        <!--24 OS Address Version Date   -->
+        <xs:element name="OS_A_TOIDD" type="DateString" />
+        <!--25 OS Topography Version   -->
+        <xs:element name="OS_T_TOIDV" type="xs:int" />
+        <!--26 OS Carto Text Version   -->
+        <xs:element name="OS_C_TOIDV" type="xs:int" />
+        <!--27 OS ITN Road Link Version   -->
+        <xs:element name="OS_L_TOIDV" type="xs:int" />
+        <!--28 OS ITN Road Version   -->
+        <xs:element name="OS_R_TOIDV" type="xs:int" />
+        <!--29 RM Postal Address Date RV  -->
+        <xs:element name="RM_P_DATE" type="DateString" />
+
+        <!-- OS BS7666 Address -->
+
+        <!--30 OS BS7666 Secondary Addressable Object Name   -->
+        <xs:element name="OS_BS_SAON" type="String110" />
+        <!--31 OS BS7666 Primary Addressable Object Name   -->
+        <xs:element name="OS_BS_PAON" type="String500" />
+        <!--32 OS BS7666 Street    -->
+        <xs:element name="OS_BS_STRE" type="String80" />
+        <!--33 OS BS7666 Locality    -->
+        <xs:element name="OS_BS_LOCA" type="String80" />
+        <!--34 OS BS7666 Town    -->
+        <xs:element name="OS_BS_TOWN" type="String60" />
+        <!--35 OS BS7666 Administrative Area   -->
+        <xs:element name="OS_BS_LA" type="String100" />
+        <!--36 OS BS7666 Postcode  PC  -->
+        <xs:element name="OS_BS_PC" type="String8 " />
+        <!-- OS Alternative Address -->
+
+
+        <!--37 OS Alt Sub Building Name  SB  -->
+        <xs:element name="OS_AL_SB" type="String30" />
+        <!--38 OS Alt Building Name  BD  -->
+        <xs:element name="OS_AL_BD" type="String50" />
+        <!--39 OS Alt Building Number  BN  -->
+        <xs:element name="OS_AL_BN" type="xs:int" />
+        <!--40 OS Alt Dependent Thoroughfare Name  DR  -->
+        <xs:element name="OS_AL_DR" type="String80" />
+        <!--41 OS Alt Thoroughfare Name  TN  -->
+        <xs:element name="OS_AL_TN" type="String80" />
+
+        <!-- RM DP Address -->
+        <!--42 RM DP Organisation Name ON  -->
+        <xs:element name="RM_DP_ON" type="String60" />
+        <!--43 RM DP Department Name DP  -->
+        <xs:element name="RM_DP_DP" type="String60" />
+        <!--44 RM DP PO Box Number  PB  -->
+        <xs:element name="RM_DP_PB" type="String6" />
+        <!--45 RM DP Sub Building Name  SB  -->
+        <xs:element name="RM_DP_SB" type="String30" />
+        <!--46 RM DP Building Name  BD  -->
+        <xs:element name="RM_DP_BD" type="String50" />
+        <!--47 RM DP Building Number  BN  -->
+        <xs:element name="RM_DP_BN" type="xs:int" />
+        <!--48 RM DP Dependent Thoroughfare Name  DR  -->
+        <xs:element name="RM_DP_DR" type="String80" />
+        <!--49 RM DP Thoroughfare Name  TN  -->
+        <xs:element name="RM_DP_TN" type="String80" />
+        <!--50 RM DP Double Dependent Locality  DD  -->
+        <xs:element name="RM_DP_DD" type="String35" />
+        <!--51 RM DP Dependent Locality  DL  -->
+        <xs:element name="RM_DP_DL" type="String35" />
+        <!--52 RM DP Post Town  PT  -->
+        <xs:element name="RM_DP_PT" type="String30" />
+        <!--53 RM DP Postcode  PC  -->
+        <xs:element name="RM_DP_PC" type="String8" />
+        <!--54 RM DP Postcode Type   -->
+        <xs:element name="RM_DP_PCT" type="String5" />
+        <!--55 RM DP Delivery Point Suffix   -->
+        <xs:element name="RM_DP_DPS" type="String2" />
+
+        <!-- RM Welsh DP Address  -->
+        <!--56 RM Welsh DP Dependent Thoroughfare Name DR  -->
+        <xs:element name="RM_WDP_DR" type="String80" />
+        <!--57 RM Welsh DP Thoroughfare Name  TN  -->
+        <xs:element name="RM_WDP_TN" type="String80" />
+        <!--58 RM Welsh DP Double Dependent Locality  DD  -->
+        <xs:element name="RM_WDP_DD" type="String35" />
+        <!--59 RM Welsh DP Dependent Locality  DL  -->
+        <xs:element name="RM_WDP_DL" type="String35" />
+        <!--60 RM Welsh DP Post Town  PT  -->
+        <xs:element name="RM_WDP_PT" type="String30" />
+
+        <!-- RM Alias DP Address -->
+        <!--61 RM Alias DP Also Known As   -->
+        <xs:element name="RM_AL_AKA" type="String50" />
+        <!--62 RM Alias DP Building Name  BD  -->
+        <xs:element name="RM_AL_BD" type="String50" />
+        <!--63 RM Alias DP Department Name DP  -->
+        <xs:element name="RM_AL_DP" type="String50" />
+        <!--64 RM Alias DP Organisation Description   -->
+        <xs:element name="RM_AL_OD" type="String50" />
+        <!--65 RM Alias DP Organisation at a Residential   -->
+        <xs:element name="RM_AL_OR" type="String50" />
+        <!--66 RM Alias DP Trading Name   -->
+        <xs:element name="RM_AL_TN" type="String50" />
+        <!--67 RM Alias Welsh Alternative   -->
+        <xs:element name="RM_AL_WA" type="String50" />
+
+        <!-- RM True PO Box Address -->
+        <!--68 RM TPO Organisation Name ON  -->
+        <xs:element name="RM_TPO_ON" type="String60" />
+        <!--69 RM TPO PO Box Number  PB  -->
+        <xs:element name="RM_TPO_PB" type="String6" />
+        <!--70 RM TPO Geographical Address   -->
+        <xs:element name="RM_TPO_GA" type="String325" />
+        <!--71 RM TPO Postcode  PC  -->
+        <xs:element name="RM_TPO_PC" type="String8" />
+
+        <!-- RM MR Address  -->
+        <!--72 RM MR Organisation Name ON  -->
+        <xs:element name="RM_MR_ON" type="String60" />
+        <!--73 RM MR Department Name DP  -->
+        <xs:element name="RM_MR_DP" type="String60" />
+        <!--74 RM MR Sub Building Name  SB  -->
+        <xs:element name="RM_MR_SB" type="String30" />
+        <!--75 RM MR Building Name  BD  -->
+        <xs:element name="RM_MR_BD" type="String50" />
+        <!--76 RM MR Building Number  BN  -->
+        <xs:element name="RM_MR_BN" type="xs:int" />
+        <!--77 RM MR Dependent Thoroughfare Name DR  -->
+        <xs:element name="RM_MR_DR" type="String80" />
+        <!--78 RM MR Thoroughfare Name  TN  -->
+        <xs:element name="RM_MR_TN" type="String80" />
+        <!--79 RM MR Double Dependent Locality  DD  -->
+        <xs:element name="RM_MR_DD" type="String35" />
+        <!--80 RM MR Dependent Locality  DL  -->
+        <xs:element name="RM_MR_DL" type="String35" />
+        <!--81 RM MR Post Town  PT  -->
+        <xs:element name="RM_MR_PT" type="String30" />
+        <!--82 RM MR Postcode  PC  -->
+        <xs:element name="RM_MR_PC" type="String8" />
+
+        <!-- VO NDR Address -->
+        <!--83 VO NDR Firm Name   -->
+        <xs:element name="VO_NDR_FN" type="String50" />
+        <!--84 OS PO Box Flag - DANGER: Should be 'boolean'-->
+        <xs:element name="OS_PB_FLAG" type="String10" />
+        <!--85 RM Multi-Occ Count   -->
+        <xs:element name="RM_MOC" type="xs:int" />
+        <!--86 LA Code   -->
+        <xs:element name="LA_C" type="xs:int" />
+
+
+        <!--We could lose these but we'll keep them for now.-->
+        
+        <!-- OS Coordinate  -->
+        <!--87 OS Easting XCOORD  -->
+        <xs:element name="OS_X" type="xs:int" />
+        <!--88 OS Northing YCOORD  -->
+        <xs:element name="OS_Y" type="xs:int" />
+
+        <!-- OS Positional Status Flag SF -->
+        <!--89 OS Match Status   -->
+        <xs:element name="OS_SF_MS" type="String37" />
+        <!--90 OS Physical Status   -->
+        <xs:element name="OS_SF_PS" type="String10" />
+        <!--91 OS Position Accuracy   -->
+        <xs:element name="OS_SF_PQA" type="String20" />
+        <!--92 OS Position Status   -->
+        <xs:element name="OS_SF_PQ" type="String20" />
+        <!--93 OS Structure Type   -->
+        <xs:element name="OS_SF_ST" type="String18" />
+        <!--94 OS Spatial Referencing System   -->
+        <xs:element name="OS_SRS" type="String5" />
+        <!--95 OS Base Function   -->
+        <xs:element name="OS_CLASS" type="String120" />
+        <!--96 NLUD Land Use Group   -->
+        <xs:element name="NLUD_CLASS" type="String4" />
+        <!--97 VO NDR PDesc Code   -->
+        <xs:element name="VO_P_CLASS" type="String5" />
+        <!--98 VO NDR SCat Code   -->
+        <xs:element name="VO_S_CLASS" type="String4" />
+        <!--99 OS Classification Confidence   -->
+        <xs:element name="OS_C_CONF" type="xs:int" />
+
+        <xs:element name="Geom" type="GMLStub_Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="TOID"><xs:restriction base="xs:string"><xs:maxLength value="20" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="DateString"><xs:restriction base="xs:string"><xs:maxLength value="100" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String2"><xs:restriction base="xs:string"><xs:maxLength value="2" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String4"><xs:restriction base="xs:string"><xs:maxLength value="4" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String5"><xs:restriction base="xs:string"><xs:maxLength value="5" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String6"><xs:restriction base="xs:string"><xs:maxLength value="6" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String8"><xs:restriction base="xs:string"><xs:maxLength value="8" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String10"><xs:restriction base="xs:string"><xs:maxLength value="10" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String18"><xs:restriction base="xs:string"><xs:maxLength value="18" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String20"><xs:restriction base="xs:string"><xs:maxLength value="20" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String30"><xs:restriction base="xs:string"><xs:maxLength value="30" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String35"><xs:restriction base="xs:string"><xs:maxLength value="35" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String37"><xs:restriction base="xs:string"><xs:maxLength value="37" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String50"><xs:restriction base="xs:string"><xs:maxLength value="50" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String60"><xs:restriction base="xs:string"><xs:maxLength value="60" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String80"><xs:restriction base="xs:string"><xs:maxLength value="80" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String100"><xs:restriction base="xs:string"><xs:maxLength value="100" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String110"><xs:restriction base="xs:string"><xs:maxLength value="110" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String120"><xs:restriction base="xs:string"><xs:maxLength value="120" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String500"><xs:restriction base="xs:string"><xs:maxLength value="200" /></xs:restriction></xs:simpleType>
+  <xs:simpleType name="String325"><xs:restriction base="xs:string"><xs:maxLength value="325" /></xs:restriction></xs:simpleType>
+  <!--Stub datatypes so we can have schema validation without trawling the GML-->
+  <xs:complexType name="GMLStub_Point">
+    <xs:sequence>
+      <xs:any></xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>

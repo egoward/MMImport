@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Importing into PostgreSQL</title>
+		<style type="text/css">
+        .hilightText {
+	        background-color: #FFFF00;
+        }
+		.table1 {
+	border-collapse: collapse;
+}
+.codeBlock {
+	padding: 4px;
+	border-style: solid;
+	border-width: thin;
+	margin-left: 40px;
+}
+		</style>
+	</head>
+	<body style="font-family: Arial">
+	
+        <h2>Initial Configuration</h2>
+        <p>
+            First, get SQL Server 2008 installed.&nbsp; Create a new database for the MasterMap data.</p>
+        <p>
+            In MMImport, change the Export Target to &quot;SQL Server 2008&quot;.</p>
+        <p>
+            Edit the &quot;DatabaseName&quot; and &quot;ServerName&quot; settings to reflect the location of 
+            your SQL Server 2008 install.&nbsp; If you are doing something other than the 
+            default ports / authentication, you may need to edit the connection string 
+            template.&nbsp; You may find this page useful -
+            <a href="http://www.connectionstrings.com/sql-server-2008#1">
+            http://www.connectionstrings.com/sql-server-2008#1</a></p>
+        <p>
+            Once you are happy with your settings, try selecting Actions &gt; "Test Configuration
+            / Connection" from the menu.&nbsp; This will test the ConnectionString parameter
+            is working correctly.</p>
+        <p>
+            The output should be as follows:</p>
+            <pre class="codeBlock">Started at 2009/04/20-10:25:14
+Loading schema : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xsd
+Loading transform : C:\edonicagis\Trunk\bin\Debug\Topo\OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Data Source=GORDON;Initial Catalog=MasterMap;Integrated Security=True;Application Name="MMImport (bulk load)"
+Connected OK
+Output processor connected
+Shutting down output processor
+Shutdown complete : (0.156 seconds)
+Finished at 2009/04/20-10:25:14
+</pre>
+	<p>
+            When you're happy with them
+            select File &gt; "Save Defaults" from the menu and it will write a Default.XMLImport
+            file in the same directory as the application.</p>
+        <p>
+            If you are using other Ordnance Survey datasets, leave the coordinate system as 
+            is.&nbsp; It will be imported as the SQL2008 Geometry type.</p>
+        <p>
+            If you are using global datasets then you want to set &quot;ConvertToWGS84&quot; to true.&nbsp; 
+            It will be imported using the SQL2008 Geography type.</p>
+        <p>
+            The application will add a default spatial index, however you will probably want 
+            to change the extents / parameters of the index to meet your requirements.&nbsp; 
+            I need to do some profiling to find the best way of working with different 
+            datasets.</p>
+        <h2>
+            Importing a full dataset</h2>
+        <h3>
+            1. Create tables in database</h3>
+        <p>
+            From the menu, select Actions &gt; Create Tables.</p>
+        <p>
+            The output should be as per <a href="CreateTables.txt">
+			CreateTables.txt</a></p>
+        <h3>
+            2. Import data</h3>
+        <p>
+            From the menu, select Actions &gt; Import Files.&nbsp; Select the XML files or zipped
+            XML files you wish to import and select OK.</p>
+	<p>
+            If you&#39;re just testing out the process, you can get some 
+			sample data from the Ordnance Survey:<br>
+			<a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/topography/sample.html">
+			http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/layers/topography/sample.html</a></p>
+        <p>
+            Try a small file first as some errors will only appear when you get 
+			to the end.&nbsp; You can import the same file several times then
+            remove duplicates afterwards.</p>
+	<p>
+            The output should be as per <a href="ImportData.txt">ImportData.txt</a></p>
+            <h3>3. Query Information</h3>
+            <p>
+                The import process will log some data when it has finished.&nbsp;
+                To get simple information from the database, select Actions &gt; Query Information.</p>
+        <p>
+            The output should be as per <a href="QueryInfo.txt">QueryInfo.txt</a></p>
+	<h3>
+            4. Remove duplicates</h3>
+        <p>
+            If the data is geographically chunked and you've imported several tiles, objects that are on the boundaries between the
+            tiles will be in the database twice.&nbsp; To remove these tiles, select Actions
+            &gt; Remove Duplicates.</p>
+	<p>
+            The output should be as per <a href="RemoveDuplicates.txt">
+			RemoveDuplicates.txt</a></p>
+            <h3>5. Create Indexes</h3>
+            <p>
+                This step will create a spatial index on the geometry in the map and put the map
+                into the correct spatial reference.&nbsp; You cannot import any data while the indexes
+                are present.&nbsp; To add the indexes, select Actions &gt; Create Indexes.</p>
+	<p>
+                The output should be as per <a href="CreateIndexes.txt">
+				CreateIndexes.txt</a></p>
+        <p>
+            &nbsp;</p>
+        <h2>
+            Applying a Change Only Update</h2>
+        <p>
+            Updating large datasets may take some time.&nbsp; Consider removing the indexes 
+            prior to doing this.</p>
+        <h3>1. Set the TableNamePrefix to 'UPDATE_'</h3>
+            <p>On the right hand side of the import window, set the 
+			TableNamePrefix to &#39;UPDATE_&#39;. This will append UPDATE_ to all table 
+			names so we can import our change only files into a different 
+			location.</p>
+        <h3>2. Create the 'UPDATE_' tables</h3>
+            <p>From the menu, select Actions > Create Tables</p>
+        <h3>3. Import the change only updates</h3>
+            <p>From the menu, select Actions > Import Files.  Select the change only update files to import.</p>
+        <h3>4. Remove any duplicates</h3>
+            <p>If you have imported multiple change only update files, select 
+			Actions &gt; Remove Duplicates to remove duplicate items (this is not 
+			essential)</p>
+        <h3>4. Apply the update</h3>
+            <p>From the menu, select &#39;Apply Loaded Updates&#39;.&nbsp; For each 
+			table, this will...</p>
+	<ul>
+		<li>Delete from the main table where the update had recorded a 
+		&#39;departed&#39; feature.</li>
+		<li>Delete from the main table any records present in the update (based 
+		on TOID / FID)</li>
+		<li>Insert any records present in the update.</li>
+	</ul>
+        <h3>5. Remove the update tables</h3>
+            <p>When you are happy the update has been applied, verify the TableNamePrefix is 
+                still set to &quot;UPDATE_&quot; and from the menu, select Actions &gt; Drop Tables to delete 
+                the update tables.</p>
+        <p>If you have multple updates to perform, repeat these steps for each update.</p>
+        <p>Remember to make sure you have indexes.&nbsp;</p>
+        <h2>Importing Address Layer 2 XML</h2>
+        <p>A database schema and transformation have been provided to import OS AddressLayer 2 data.  Set the OutputSchema to 'OSMMAddressLayer2.xsd' and the Transform to 'OSMMAddressLayer2.xslt' if you wish to import address layer 2 data.</p>
+        <p>The import process may not be complete, and you may wish to modify the XSL file to process additional attributes.</p>
+        
+        
+        <p>
+            Similarly, you may select the AddressLayer1 or ITN datasets to import those.</p>
+        <p>
+            You may find these SQL statements handy if you want to perform some 
+			of these actions from postgres directly.&nbsp;
+			<a href=CannedSQLStatements.txt">CannedSQLStatements.txt</a>.</p>
+	<p>
+            &nbsp;</p>
+       
+	
+	</body>
+</html>

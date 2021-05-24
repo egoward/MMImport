@@ -1,0 +1,37 @@
+﻿Starting
+Loading schema : OSMMTopography.xsd
+Loading trasform : OSMMTopography.xslt
+Initialising output processor
+Connecting to database : 
+Server=localhost;Database=MasterMap;User Id=postgres;CommandTimeout=86400;
+Connected OK
+Output processor connected
+Creating table TopographicPoint
+SQL:CREATE TABLE TopographicPoint (TOID varchar(20),FeatureCode integer,PointClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicpoint','geom',-1,'POINT', 2);
+Creating table TopographicLine
+SQL:CREATE TABLE TopographicLine (TOID varchar(20),FeatureCode integer,LineClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicline','geom',-1,'GEOMETRY', 2);
+Creating table TopographicArea
+SQL:CREATE TABLE TopographicArea (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topographicarea','geom',-1,'GEOMETRY', 2);
+Creating table TopDetail
+SQL:CREATE TABLE TopDetail (TOID varchar(20),FeatureCode integer,FillClass varchar(120),FillPattern varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','topdetail','geom',-1,'GEOMETRY', 2);
+Creating table DepartedFeature
+SQL:CREATE TABLE DepartedFeature (TOID varchar(20),ReasonForDeparture varchar(255))
+Creating table CartographicText
+SQL:CREATE TABLE CartographicText (TOID varchar(20),FeatureCode integer,TextString varchar(255),Height double precision,Orientation integer,Col varchar(6),FontNumber integer,AnchorPosition integer,TextStyle integer)
+SQL:SELECT * FROM AddGeometryColumn('','cartographictext','geom',-1,'POINT', 2);
+Creating table CartographicSymbol
+SQL:CREATE TABLE CartographicSymbol (TOID varchar(20),FeatureCode integer,Orientation integer,SymbolClass varchar(120))
+SQL:SELECT * FROM AddGeometryColumn('','cartographicsymbol','geom',-1,'POINT', 2);
+Creating table BoundaryLine
+SQL:CREATE TABLE BoundaryLine (TOID varchar(20),FeatureCode integer)
+SQL:SELECT * FROM AddGeometryColumn('','boundaryline','geom',-1,'GEOMETRY', 2);
+Creating table BoundaryMember
+SQL:CREATE TABLE BoundaryMember (TOID varchar(20),FeatureCode integer)
+SQL:SELECT * FROM AddGeometryColumn('','boundarymember','geom',-1,'POINT', 2);
+Shutting down output processor
+Shutdown complete
+Done
