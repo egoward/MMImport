@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using OSGeo.OGR;
 using System.IO;
-using Edonica.XMLImport;
 using Edonica.MapBase;
 
 namespace MMImportCore

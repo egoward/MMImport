@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Edonica.MapBase;
-using Edonica.XMLImport;
 using OSGeo.OGR;
+using Edonica.XMLImport;
 
 namespace MMImportCore.OGR
 {
@@ -120,7 +120,6 @@ namespace MMImportCore.OGR
                 return; //Skipping - this happens when we didn't have a geometry field (we warned earlier)
 
             string[] values = new string[tableSchema.Count];
-
             MapGeometry geometry;
             ReadValues(element, values, out geometry);
 
