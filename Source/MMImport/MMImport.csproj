@@ -2,98 +2,17 @@
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Edonica.XMLImport</RootNamespace>
-    <StartupObject></StartupObject>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <PlatformTarget>x64</PlatformTarget>
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DocumentationFile>bin\Release\MMImport.XML</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Doc\Posgresql\CannedSQLStatements.txt" />
-    <None Include="Doc\Posgresql\CreateIndexes.txt" />
-    <None Include="Doc\Posgresql\CreateTables.txt" />
-    <None Include="Doc\Posgresql\ImportData.txt" />
-    <None Include="Doc\Index.htm" />
-    <None Include="Doc\Posgresql\InitialTest.png" />
-    <None Include="Doc\Posgresql\QueryInfo.txt" />
-    <None Include="Doc\Posgresql\RemoveDuplicates.txt" />
-    <None Include="Doc\Posgresql\ScreenShot1.png" />
-    <None Include="Transforms\AddressLayer1\AddressLayer1.xsd">
-      <SubType></SubType>
-    </None>
-    <None Include="Transforms\AddressLayer2\AddressLayer2.xsd">
-      <SubType></SubType>
-    </None>
-    <None Include="Transforms\ITN\ITN.xsd">
-      <SubType></SubType>
-    </None>
-    <None Include="Transforms\Topo\OSMMTopography.xsd">
-      <SubType></SubType>
-    </None>
-    <Content Include="Doc\OGR\OGR.html" />
-    <Content Include="Doc\Posgresql\PostgreSQL.html" />
-    <None Include="Doc\SQL2008\CreateTables.txt" />
-    <None Include="Doc\SQL2008\CreateIndexes.txt" />
-    <None Include="Doc\SQL2008\ImportData.txt" />
-    <None Include="Doc\SQL2008\QueryInfo.txt" />
-    <None Include="Doc\SQL2008\RemoveDuplicates.txt" />
-    <None Include="Doc\SQL2008\CannedSQLStatements.txt" />
-    <Content Include="Doc\SQL2008\SQL2008.html" />
-    <Content Include="Icon.ico" />
-    <Content Include="Readme.txt" />
-    <Content Include="Transforms\AddressLayer1\AddressLayer1.xslt" />
-    <Content Include="Transforms\AddressLayer1\readme.txt" />
-    <Content Include="Transforms\AddressLayer1\TestInput.xml" />
-    <Content Include="Transforms\AddressLayer2\AddressLayer2.xslt" />
-    <Content Include="Transforms\AddressLayer2\readme.txt" />
-    <Content Include="Transforms\ITN\ITN.xslt" />
-    <Content Include="Transforms\ITN\Road.xml" />
-    <Content Include="Transforms\ITN\RoadLink.xml" />
-    <Content Include="Transforms\ITN\RoadLinkInformation.xml" />
-    <Content Include="Transforms\ITN\RoadNode.xml" />
-    <Content Include="Transforms\ITN\RoadRouteInformation.xml" />
-    <Content Include="Transforms\Topo\OSMMTopography.xslt" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MapBase\MapBase.csproj" />
     <ProjectReference Include="..\MMImportCore\MMImportCore.csproj" />
     <ProjectReference Include="..\OSTN02\OSTN02.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="../../Transforms/**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

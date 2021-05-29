@@ -9,51 +9,40 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ToDo.txt = ToDo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImport", "Source\MMImport\MMImport.csproj", "{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMImport", "Source\MMImport\MMImport.csproj", "{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSTN02", "Source\OSTN02\OSTN02.csproj", "{786079FE-FF94-4545-B0E3-CB91AA44E15E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSTN02", "Source\OSTN02\OSTN02.csproj", "{786079FE-FF94-4545-B0E3-CB91AA44E15E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCore", "Source\MMImportCore\MMImportCore.csproj", "{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMImportCore", "Source\MMImportCore\MMImportCore.csproj", "{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCommandLine", "Source\MMImportCommandline\MMImportCommandLine.csproj", "{F26313FA-22FD-4739-BB3D-0E5F74224AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMImportCommandLine", "Source\MMImportCommandline\MMImportCommandLine.csproj", "{F26313FA-22FD-4739-BB3D-0E5F74224AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapBase", "Source\MapBase\MapBase.csproj", "{36FBC3F9-24F1-45D2-807E-B6C74E93941C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapBase", "Source\MapBase\MapBase.csproj", "{36FBC3F9-24F1-45D2-807E-B6C74E93941C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Mono|Any CPU = Mono|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Mono|Any CPU.ActiveCfg = Release|Any CPU
-		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}.Release|Any CPU.Build.0 = Release|Any CPU
 		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Mono|Any CPU.ActiveCfg = Release|Any CPU
-		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786079FE-FF94-4545-B0E3-CB91AA44E15E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Mono|Any CPU.ActiveCfg = Release|Any CPU
-		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
-		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Mono|Any CPU.Build.0 = Mono|Any CPU
 		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F26313FA-22FD-4739-BB3D-0E5F74224AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Mono|Any CPU.ActiveCfg = Release|Any CPU
-		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36FBC3F9-24F1-45D2-807E-B6C74E93941C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
