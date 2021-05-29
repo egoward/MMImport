@@ -95,14 +95,5 @@
     <ProjectReference Include="..\OSTN02\OSTN02.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GDAL.Native">
-      <Version>2.4.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.SqlServer.Types">
-      <Version>14.0.1016.290</Version>
-    </PackageReference>
-    <PackageReference Include="Npgsql">
-      <Version>5.0.5</Version>
-    </PackageReference>
   </ItemGroup>
 </Project>

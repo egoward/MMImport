@@ -26,7 +26,7 @@ namespace Edonica.XMLImport
             get
             {
                 System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-                return Path.GetFileNameWithoutExtension(asm.CodeBase);
+                return Path.GetFileNameWithoutExtension(asm.Location);
             }
         }
 
@@ -408,7 +408,7 @@ namespace Edonica.XMLImport
     }
 }
 
-
+/*
 namespace System.Drawing.Design
 {
     class UITypeEditor
@@ -416,6 +416,7 @@ namespace System.Drawing.Design
     }
 
 }
+*/
 
 namespace Edonica.XMLImport
 {

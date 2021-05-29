@@ -28,6 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SqlServer.Types">
       <Version>14.0.1016.290</Version>
+      <NoWarn>NU1701</NoWarn>
     </PackageReference>
     <PackageReference Include="Npgsql">
       <Version>5.0.5</Version>

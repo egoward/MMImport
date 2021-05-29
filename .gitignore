@@ -2,4 +2,4 @@ packages
 bin
 **/obj
 *.user
-
+.vs/

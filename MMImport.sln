@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ToDo.txt = ToDo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImport", "MMImport\MMImport.csproj", "{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImport", "Source\MMImport\MMImport.csproj", "{5C031FD7-9B5D-49A3-AF3E-827EF8A59D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSTN02", "OSTN02\OSTN02.csproj", "{786079FE-FF94-4545-B0E3-CB91AA44E15E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSTN02", "Source\OSTN02\OSTN02.csproj", "{786079FE-FF94-4545-B0E3-CB91AA44E15E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCore", "MMImportCore\MMImportCore.csproj", "{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCore", "Source\MMImportCore\MMImportCore.csproj", "{CF71F6DE-FBB3-44F5-A131-6BEFE13506FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCommandLine", "MMImportCommandline\MMImportCommandLine.csproj", "{F26313FA-22FD-4739-BB3D-0E5F74224AE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMImportCommandLine", "Source\MMImportCommandline\MMImportCommandLine.csproj", "{F26313FA-22FD-4739-BB3D-0E5F74224AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapBase", "MapBase\MapBase.csproj", "{36FBC3F9-24F1-45D2-807E-B6C74E93941C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapBase", "Source\MapBase\MapBase.csproj", "{36FBC3F9-24F1-45D2-807E-B6C74E93941C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

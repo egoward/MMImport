@@ -52,7 +52,7 @@ namespace Edonica.XMLImport
 
 
 
-        private string outputSchema = "Topo\\OSMMTopography.xsd";
+        private string outputSchema = "..\\..\\..\\..\\Transforms\\Topo\\OSMMTopography.xsd";
 
         /// <summary>
         /// Filename containing the schema
@@ -67,7 +67,7 @@ namespace Edonica.XMLImport
             set { outputSchema = value; }
         }
 
-        private string transform = "Topo\\OSMMTopography.xslt";
+        private string transform = "..\\..\\..\\..\\Transforms\\Topo\\OSMMTopography.xslt";
         /// <summary>
         /// Filename for the XSL transform
         /// </summary>

@@ -259,7 +259,7 @@ namespace Edonica.XMLImport
                 Log(ex.Message);
                 if (!PostgresConfig.IgnoreErrorsDroppingTables)
                 {
-                    throw ex;
+                    throw;
                 }
             }
         }
