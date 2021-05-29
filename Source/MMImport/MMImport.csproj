@@ -15,4 +15,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <Target Name="ZipOutputPath" AfterTargets="Build">
+      <ZipDirectory
+          SourceDirectory="$(OutputPath)"
+          DestinationFile="$(MSBuildProjectDirectory)\bin\MMImport.release.zip" />
+  </Target>  
 </Project>
