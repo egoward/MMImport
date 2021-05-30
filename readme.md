@@ -1,12 +1,39 @@
-## Edonica MasterMap Importer
+# Edonica MasterMap Importer
+## What does this do?
+- Allows users to quickly import large Ordnance Survey vector datasets such as the [Topography Layer](https://www.ordnancesurvey.co.uk/business-government/tools-support/mastermap-topography-support) and apply the recommended cartographic styling.
+## What problem is it solving?
+- Ordance Ordnance Survey MasterMap comes in large zipped XML files
+- They publish a defined styling of the data in XSLT
+- UK organisations have difficulty processing the files and can burn lots of money and time.
+- Engineers take shortcuts conclude that structured data is slow, and incur technical debt
+## How does do it?
+- Streams content from zipped XML ([GML](https://www.ogc.org/standards/gml)) files
+- Applies an [XSLT](https://www.w3.org/TR/xslt-30/) transform to each element
+- Streams content into a bulk load target (e.g. [Postgres](https://www.postgresql.org/) / [PostGIS](https://postgis.net/) using [NPGSQL](https://www.npgsql.org/)
 
-See https://www.edonica.com/MMImport/index.html for details.
 
-Uploading MMImport.20091029.zip here and converting source code in this repository to the MIT license.  Naturally this license applies to source files in this repository which I am the sole author of.
+## What does that look like?
+First load some data using the UI like this ...
 
-Notes:
-- This code was last compiled with Visual Studio 2008 and will take a little work to migrate
+![Windows Forms UI](Doc/Posgresql/ScreenShot2.png)
 
+Then you can see the data including styling like this ...
+
+![Windows Forms UI](Doc/Posgresql/PGAdmin4.png)
+
+Then you can configure a rendrer, for example with [UMN MapServer](https://www.edonica.com/ImportingData/UMNMapServer.html) and OpenLayers
+
+![Output, rendered with UMN Map Server](Doc/Images/MM1.png)
+
+## Other Notes
+This was originally hosted [here](https://www.edonica.com/MMImport/index.html) and there are more notes in HTML files in the project.
+
+## Change log May 30 2021
+
+Migrated to .Net Core 5
+- Removed references to WPF (which we were using for Point and Rect)
+- Restructured file layout
+- Added automated builds and ZIPed releases in GitHub to make contributions safer.
 ## Change log May 25 2021
 
 Migrated to .Net 472 / NuGet / High DPI and tested with:
@@ -16,9 +43,3 @@ Migrated to .Net 472 / NuGet / High DPI and tested with:
 
 All still works with geometry visible in PGAdmin and SQL Server Management Console.
 
-Known issues:
-- Migration to .Net Core looks preferable
-- File layout worked well as a Zip, not so much in GIT
-- Native dependencies require copying files around in a non-obvious way:
-  - Copy from %HOMEPATH%\\.nuget\packages\gdal.native\2.4.4\build\gdal\x64\*
-  - To ~\Source\bin\Debug\*

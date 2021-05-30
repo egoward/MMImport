@@ -25,7 +25,7 @@ namespace Edonica.XMLImport
         }
 
 
-        private string pSQLPathToEXE = "C:\\pgsql\\bin\\psql.exe";
+        private string pSQLPathToEXE = "C:\\Program Files\\PostgreSQL\\13\\bin\\psql.exe";
         /// <summary>
         /// As per description
         /// </summary>

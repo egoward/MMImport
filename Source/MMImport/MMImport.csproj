@@ -15,9 +15,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <Target Name="ZipOutputPath" AfterTargets="Build">
+  <Target Name="ZipOutputPath" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
       <ZipDirectory
           SourceDirectory="$(OutputPath)"
-          DestinationFile="$(MSBuildProjectDirectory)\bin\MMImport.release.zip" />
+          DestinationFile="$(MSBuildProjectDirectory)\bin\MMImport.release.zip" 
+          Overwrite="true"/>
   </Target>  
 </Project>
